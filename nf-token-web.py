@@ -37,6 +37,42 @@ BULK_DELAY = 0.5
 FETCH_TIMEOUT = 10
 
 
+def fetch_account_info(cookie_dict):
+    """Fetch region & plan metadata if available, fallback to Unknown."""
+    region = "Unknown"
+    plan = "Unknown"
+    
+    # Parse OptanonConsent for geolocation hint
+    consent = cookie_dict.get("OptanonConsent", "")
+    if consent:
+        import urllib.parse
+        try:
+            parsed = urllib.parse.unquote(consent)
+            # geolocation=US%3BNY or similar
+            if "geolocation=" in parsed:
+                for part in parsed.split("&"):
+                    if part.startswith("geolocation="):
+                        geo = part.split("=", 1)[1]
+                        region = geo.replace("%3B", " ").replace(";", " ").replace("&", " ")
+                        break
+        except Exception:
+            pass
+    
+    # NetflixId sometimes contains region hint in pg parameter
+    netflix_id = cookie_dict.get("NetflixId", "")
+    if netflix_id and "pg%3D" in netflix_id:
+        # Extract pg value as potential region hint
+        try:
+            decoded = urllib.parse.unquote(netflix_id)
+            if "pg=" in decoded:
+                pg_val = decoded.split("pg=")[1].split("&")[0]
+                region = pg_val[-2:] if len(pg_val) >= 2 else region
+        except Exception:
+            pass
+    
+    return region, plan
+
+
 def extract_json_balanced(text):
     start = None
     for pos, char in enumerate(text):
@@ -220,15 +256,19 @@ def process_job(job_id):
             else:
                 try:
                     token, expires = nfgen.fetch_nftoken(cookie_dict, timeout=FETCH_TIMEOUT)
+                    region = "Unknown"
+                    plan = "Unknown"
                     links = " | ".join(
                         "%s %s" % (label_v, url)
                         for label_v, url in nfgen.build_nftoken_links(token)
                     )
-                    line = "[%s] %s | %s | %s" % (
+                    line = "[%s] %s | %s | %s | Region: %s | Plan: %s" % (
                         number or position,
                         label,
                         links,
                         nfgen.format_expiry(expires),
+                        region or "Unknown",
+                        plan or "Unknown",
                     )
                     ok = True
                 except Exception as exc:
@@ -295,6 +335,7 @@ def api_single():
 
     try:
         token, expires = nfgen.fetch_nftoken(cookie_dict, timeout=FETCH_TIMEOUT)
+        region, plan = fetch_account_info(cookie_dict)
         return jsonify(
             {
                 "ok": True,
@@ -303,6 +344,8 @@ def api_single():
                     for label, url in nfgen.build_nftoken_links(token)
                 ],
                 "expires": nfgen.format_expiry(expires),
+                "region": region,
+                "plan": plan,
             }
         )
     except Exception as exc:
@@ -334,6 +377,7 @@ def api_single_file():
 
     try:
         token, expires = nfgen.fetch_nftoken(cookie_dict, timeout=FETCH_TIMEOUT)
+        region, plan = fetch_account_info(cookie_dict)
         return jsonify(
             {
                 "ok": True,
@@ -342,6 +386,8 @@ def api_single_file():
                     for label, url in nfgen.build_nftoken_links(token)
                 ],
                 "expires": nfgen.format_expiry(expires),
+                "region": region,
+                "plan": plan,
             }
         )
     except Exception as exc:
@@ -511,12 +557,27 @@ button:disabled{opacity:.5;cursor:not-allowed}
   font-size:11px;font-weight:600;letter-spacing:.088em;text-transform:uppercase;
   padding:4px 10px;border-radius:9999px;margin-bottom:10px;
 }
-.link-card a{
-  display:block;color:var(--link);word-break:break-all;
-  font-family:var(--mono);font-size:13px;line-height:1.5;text-decoration:none;
+.link-card .url-row{
+  display:flex;gap:8px;align-items:center;flex-wrap:wrap;
 }
-.link-card a:hover{text-decoration:underline}
-.link-card .card-foot{display:flex;justify-content:flex-end;margin-top:12px}
+.link-card .url-text{
+  flex:1;min-width:0;color:var(--link);
+  font-family:var(--mono);font-size:12px;line-height:1.5;
+  word-break:break-all;text-decoration:none;
+}
+.link-card .url-text:hover{text-decoration:underline}
+.link-card .card-foot{display:flex;gap:8px;justify-content:flex-end;margin-top:8px}
+.link-card .meta-row{
+  display:flex;gap:16px;margin-top:10px;padding-top:10px;border-top:1px solid var(--hair);
+  font-size:12px;color:var(--muted);
+}
+.link-card .meta-row span{color:var(--body)}
+.open-btn{
+  background:var(--card-elev);border:1px solid var(--hair-strong);color:var(--body);
+  font-size:11px;font-weight:500;padding:5px 12px;border-radius:6px;cursor:pointer;
+  flex-shrink:0;font-family:var(--sans);transition:background .15s,color .15s;
+}
+.open-btn:hover{color:var(--ink);background:var(--strong)}
 .single-result .meta{color:var(--muted);font-size:13px;margin-top:6px}
 .single-result .meta span{color:var(--body)}
 .bar{height:8px;background:var(--card);border:1px solid var(--hair-strong);border-radius:9999px;margin:12px 0;overflow:hidden}
@@ -540,9 +601,11 @@ button:disabled{opacity:.5;cursor:not-allowed}
   border-radius:8px;padding:10px 14px;
 }
 .wm{
-  margin-top:40px;padding-top:24px;border-top:1px solid var(--hair);
+  padding:12px 0;
+  border-bottom:1px solid var(--hair);
   display:flex;gap:18px;flex-wrap:wrap;align-items:center;
   color:var(--muted);font-size:13px;
+  margin-bottom:28px;
 }
 .wm .who{color:var(--body);font-weight:600}
 .wm a{color:var(--muted);text-decoration:none}
@@ -564,6 +627,13 @@ button:disabled{opacity:.5;cursor:not-allowed}
 </head>
 <body>
 <div class="wrap">
+  <div class="wm">
+    <span class="who">Yuuashura</span>
+    <a href="https://github.com/Yuuashura" target="_blank" rel="noopener">GitHub: Yuuashura</a>
+    <a href="https://yuuashura.my.id" target="_blank" rel="noopener">Web: yuuashura.my.id</a>
+    <a href="https://instagram.com/yudis.ashura" target="_blank" rel="noopener">Instagram: yudis.ashura</a>
+  </div>
+
   <h1>Netflix <b>NFToken</b> Generator</h1>
   <div class="sub">Tempel cookie (Netscape / raw / JSON) &rarr; dapatkan link login nftoken. Mode Single &amp; Bulk.</div>
 
@@ -573,6 +643,7 @@ button:disabled{opacity:.5;cursor:not-allowed}
   </div>
 
   <div class="panel on" id="panelSingle">
+    <div class="input-label" style="font-size:13px;color:var(--muted);margin-bottom:8px;font-weight:500;">Tempelkan Token disini dan Generate Link Login</div>
     <textarea id="taSingle" spellcheck="false" placeholder="Contoh JSON:
 {
     &quot;NetflixId&quot;: &quot;v%3D3%26ct%3D...&quot;,
@@ -583,7 +654,7 @@ button:disabled{opacity:.5;cursor:not-allowed}
 atau raw:
 NetflixId=v%3D3%26ct%3D...; SecureNetflixId=...; nfvdid=..."></textarea>
     <div class="row">
-      <button id="btnSingle">Generate Token</button>
+      <button id="btnSingle">Generate Link Login</button>
       <button class="ghost" id="fileSingle">Generate dari file-ku</button>
       <button class="ghost" id="exSingle">Contoh</button>
       <button class="ghost" id="clearSingle">Bersihkan</button>
@@ -623,17 +694,17 @@ NetflixId=v%3D3%26ct%3Dyyy..; SecureNetflixId=...; nfvdid=..
     <div class="list hidden" id="bulkList"></div>
   </div>
 
-  <div class="wm">
-    <span class="who">Yuuashura</span>
-    <a href="https://github.com/Yuuashura" target="_blank" rel="noopener">GitHub: Yuuashura</a>
-    <a href="https://yuuashura.my.id" target="_blank" rel="noopener">Web: yuuashura.my.id</a>
-    <a href="https://instagram.com/yudis.ashura" target="_blank" rel="noopener">Instagram: yudis.ashura</a>
-  </div>
 </div>
 
 <script>
 var $ = function (id) { return document.getElementById(id); };
-var exSingleText = '{\n  "NetflixId": "v%3D3%26ct%3DBgjHlOvcAxKdAz9b0dZ3YDfUCT-YkWHzTsIrcLr4VE88WbztVjEAmknZ2RMy0HYqpqQj-AzlbK1OGffeFW8aJ67F3eVom1kE6zygDQxzMMDi-x0AR6f7QiBh4yzDkcyUAZR18rXhefTqYABnBUUfh5IsRbyQSfJMekTTLBVRaJ19q4xISf7GyD79JpIdk3YSttBBWBDRB_oKxVdj8rOZcFRXTh1jiZ8pN6x86z9dpvxs2eO8iQL9LRd8yGC7vtarCt9AoAjhGeMwdCxfNGIcGtb16EIq9wVjJyUIAQfWW49IzXmT_ixOq_dUfQpbD900pHStvQ0_nTJCLChkdWtmIjazbIMBFst1fR7IpJeijG3tiPbYs4cUXT2c1XiTkSGUob9FnKwk3Og-Ph4L4kL3-pEgclFOtB6EHrUFw5rDfkjTpBm_8Mknz1X3gxCtiSsvAv6AjfiNto0Hg7KDREbmnmgnqQTXWq7TxKyTnxREPsktgP2OZ31Vw1FLa2koYu0r4T_R44oay32C5StSGr60PFt7zllYh2jsG-5mi9g8nADpTnCXWlNKGAYiDgoMnWCWWaEan12ISnXC%26pg%3DJPIAMSHZMNB7RGFR3YGAMX4CQA%26ch%3DAQEAEAABABR3PKNDLcjr2QZAwEGoJt1fOyxisUP6a2E",\n  "SecureNetflixId": "v%3D3%26mac%3DAQEAEQABABQl2apnwBe9TQ6-qKqoVb6L2Fz4szkJp34.%26dt%3D1779826982639",\n  "nfvdid": "BQFmAAEBEB2dzIuM7t-FocibcNoCdKdgiIpR4aBErE2mgpxHrmkzEu2BMUBqqbjrrWP0yCJ85ilIVIPvyBsQNOu3gEkO5iYE6LHV794tEww7n1h42PrzqZo4uWJJ_rpHmKzJSPw1bD4V1xaEusXEsNm1JWitPsRH"\n}';
+
+var exSingleText = JSON.stringify({
+  "NetflixId": "v%3D3%26ct%3D...",
+  "SecureNetflixId": "v%3D3%26mac%3D...",
+  "nfvdid": "..."
+}, null, 2);
+
 var exBulkText = '# [1] akun.contoh@gmail.com\n.netflix.com\tTRUE\t/\tTRUE\t1779826982\tNetflixId\tv%3D3%26ct%3Dxxx..\n.netflix.com\tTRUE\t/\tTRUE\t1779826982\tSecureNetflixId\tv%3D3%26mac%3Dxxx.\n.netflix.com\tTRUE\t/\tTRUE\t1779826982\tnfvdid\tBQFm..\n\n# [2] akun.raw@gmail.com\nNetflixId=v%3D3%26ct%3Dyyy..; SecureNetflixId=v%3D3%26mac%3Dyyy.; nfvdid=BQFm..';
 
 function switchTab(name) {
@@ -648,15 +719,20 @@ $('tabBulk').onclick = function () { switchTab('bulk'); };
 
 $('exSingle').onclick = function () { $('taSingle').value = exSingleText; };
 $('clearSingle').onclick = function () {
-  $('taSingle').value = ''; $('singleErr').classList.add('hidden');
+  $('taSingle').value = '';
+  $('singleErr').classList.add('hidden');
   $('singleResult').classList.add('hidden');
 };
 $('exBulk').onclick = function () { $('taBulk').value = exBulkText; };
 $('clearBulk').onclick = function () {
-  $('taBulk').value = ''; $('bulkErr').classList.add('hidden');
-  $('bulkHint').classList.add('hidden'); $('barWrap').classList.add('hidden');
-  $('bulkSum').classList.add('hidden'); $('bulkList').classList.add('hidden');
-  $('bulkList').textContent = ''; $('dlBulk').classList.add('hidden');
+  $('taBulk').value = '';
+  $('bulkErr').classList.add('hidden');
+  $('bulkHint').classList.add('hidden');
+  $('barWrap').classList.add('hidden');
+  $('bulkSum').classList.add('hidden');
+  $('bulkList').classList.add('hidden');
+  $('bulkList').textContent = '';
+  $('dlBulk').classList.add('hidden');
 };
 
 function copyText(t, btn) {
@@ -675,7 +751,7 @@ function buildRow(line, ok) {
   s.textContent = (ok ? '\u25cf ' : '\u2717 ') + line;
   s.style.color = ok ? 'var(--ok)' : 'var(--fail)';
   d.appendChild(s);
-  var re = /https:\/\/netflix\.com\/(?:tv\?|unsupported\?|\?)nftoken=[A-Za-z0-9_\-+.=~%]+/g;
+  var re = /https:\/\/netflix\.com\/(?:tv\?|unsupported\?|\?)nftoken=[A-Za-z0-9_\-\+\.\=\~\%]+/g;
   var match = line.match(re);
   if (match) {
     match.forEach(function (url) {
@@ -684,32 +760,72 @@ function buildRow(line, ok) {
       c.textContent = 'copy';
       c.onclick = function () { copyText(url, c); };
       d.appendChild(c);
+      var o = document.createElement('button');
+      o.className = 'open-btn';
+      o.textContent = 'open';
+      o.onclick = function () { window.open(url, '_blank', 'noopener'); };
+      d.appendChild(o);
     });
   }
   return d;
 }
 
-function buildLinkRow(label, url) {
+function buildLinkRow(label, url, region, plan) {
   var d = document.createElement('div');
   d.className = 'link-card';
   var tag = document.createElement('span');
   tag.className = 'tag';
   tag.textContent = label;
-  var a = document.createElement('a');
-  a.href = url;
-  a.target = '_blank';
-  a.rel = 'noopener';
-  a.textContent = url;
-  var foot = document.createElement('div');
-  foot.className = 'card-foot';
-  var c = document.createElement('button');
-  c.className = 'copy-btn';
-  c.textContent = 'copy';
-  c.onclick = function () { copyText(url, c); };
-  foot.appendChild(c);
   d.appendChild(tag);
-  d.appendChild(a);
-  d.appendChild(foot);
+
+  var urlRow = document.createElement('div');
+  urlRow.className = 'url-row';
+  var urlSpan = document.createElement('span');
+  urlSpan.className = 'url-text';
+
+  var shortUrl = url;
+  var idx = url.indexOf('nftoken=');
+  if (idx !== -1) {
+    var tok = url.substring(idx + 8);
+    shortUrl = 'nftoken=...' + tok.slice(-12);
+  }
+  urlSpan.textContent = shortUrl;
+  urlSpan.title = url;
+  urlRow.appendChild(urlSpan);
+
+  var copyBtn = document.createElement('button');
+  copyBtn.className = 'copy-btn';
+  copyBtn.textContent = 'copy';
+  copyBtn.onclick = function () { copyText(url, copyBtn); };
+  urlRow.appendChild(copyBtn);
+
+  var openBtn = document.createElement('button');
+  openBtn.className = 'open-btn';
+  openBtn.textContent = 'open';
+  openBtn.onclick = function () { window.open(url, '_blank', 'noopener'); };
+  urlRow.appendChild(openBtn);
+
+  d.appendChild(urlRow);
+
+  var metaRow = document.createElement('div');
+  metaRow.className = 'meta-row';
+
+  var rDiv = document.createElement('div');
+  rDiv.textContent = 'Region: ';
+  var rSpan = document.createElement('span');
+  rSpan.textContent = region || 'Unknown';
+  rDiv.appendChild(rSpan);
+
+  var pDiv = document.createElement('div');
+  pDiv.textContent = 'Plan: ';
+  var pSpan = document.createElement('span');
+  pSpan.textContent = plan || 'Unknown';
+  pDiv.appendChild(pSpan);
+
+  metaRow.appendChild(rDiv);
+  metaRow.appendChild(pDiv);
+  d.appendChild(metaRow);
+
   return d;
 }
 
@@ -718,7 +834,7 @@ function renderSingle(data) {
     var box = $('singleLinks');
     box.textContent = '';
     (data.urls || []).forEach(function (item) {
-      box.appendChild(buildLinkRow(item.label, item.url));
+      box.appendChild(buildLinkRow(item.label, item.url, data.region, data.plan));
     });
     $('singleExp').textContent = data.expires;
     $('singleResult').classList.remove('hidden');
@@ -729,50 +845,50 @@ function renderSingle(data) {
 }
 
 $('btnSingle').onclick = function () {
-   var text = $('taSingle').value;
-   if (!text.trim()) {
-     $('singleErr').textContent = 'Input kosong. Tempel cookie dulu (klik Contoh untuk lihat format).';
-     $('singleErr').classList.remove('hidden');
-     return;
-   }
-   var btn = $('btnSingle');
-   btn.disabled = true;
-   btn.textContent = 'Memproses...';
-   $('singleErr').classList.add('hidden');
-   $('singleResult').classList.add('hidden');
-   fetch('/api/single', {
-     method: 'POST',
-     headers: { 'Content-Type': 'application/json' },
-     body: JSON.stringify({ text: text })
-   }).then(function (r) { return r.json(); }).then(function (data) {
-     btn.disabled = false;
-     btn.textContent = 'Generate Token';
-     renderSingle(data);
-   }).catch(function (e) {
-     btn.disabled = false;
-     btn.textContent = 'Generate Token';
-     $('singleErr').textContent = 'Request error: ' + e;
-     $('singleErr').classList.remove('hidden');
-   });
+  var text = $('taSingle').value;
+  if (!text.trim()) {
+    $('singleErr').textContent = 'Input kosong. Tempel cookie dulu (klik Contoh untuk lihat format).';
+    $('singleErr').classList.remove('hidden');
+    return;
+  }
+  var btn = $('btnSingle');
+  btn.disabled = true;
+  btn.textContent = 'Memproses...';
+  $('singleErr').classList.add('hidden');
+  $('singleResult').classList.add('hidden');
+  fetch('/api/single', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ text: text })
+  }).then(function (r) { return r.json(); }).then(function (data) {
+    btn.disabled = false;
+    btn.textContent = 'Generate Link Login';
+    renderSingle(data);
+  }).catch(function (e) {
+    btn.disabled = false;
+    btn.textContent = 'Generate Link Login';
+    $('singleErr').textContent = 'Request error: ' + e;
+    $('singleErr').classList.remove('hidden');
+  });
 };
 
 $('fileSingle').onclick = function () {
-   var btn = $('fileSingle');
-   btn.disabled = true;
-   btn.textContent = 'Membaca file...';
-   $('singleErr').classList.add('hidden');
-   $('singleResult').classList.add('hidden');
-   fetch('/api/single/file', { method: 'POST' })
-     .then(function (r) { return r.json(); }).then(function (data) {
-       btn.disabled = false;
-       btn.textContent = 'Generate dari file-ku';
-       renderSingle(data);
-     }).catch(function (e) {
-       btn.disabled = false;
-       btn.textContent = 'Generate dari file-ku';
-       $('singleErr').textContent = 'Request error: ' + e;
-       $('singleErr').classList.remove('hidden');
-     });
+  var btn = $('fileSingle');
+  btn.disabled = true;
+  btn.textContent = 'Membaca file...';
+  $('singleErr').classList.add('hidden');
+  $('singleResult').classList.add('hidden');
+  fetch('/api/single/file', { method: 'POST' })
+    .then(function (r) { return r.json(); }).then(function (data) {
+      btn.disabled = false;
+      btn.textContent = 'Generate dari file-ku';
+      renderSingle(data);
+    }).catch(function (e) {
+      btn.disabled = false;
+      btn.textContent = 'Generate dari file-ku';
+      $('singleErr').textContent = 'Request error: ' + e;
+      $('singleErr').classList.remove('hidden');
+    });
 };
 
 var sse = null;
