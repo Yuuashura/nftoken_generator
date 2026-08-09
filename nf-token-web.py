@@ -534,7 +534,13 @@ textarea{
   font-family:var(--mono);font-size:13px;line-height:1.6;resize:vertical;white-space:pre;
 }
 textarea:focus{outline:none;border-color:var(--primary-glow);box-shadow:0 0 0 3px rgba(26,38,255,.15)}
-.row{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0}
+.optional-meta{display:flex;gap:10px;margin-top:14px;flex-wrap:wrap}
+.optional-meta .meta-field{flex:1;min-width:180px;display:flex;flex-direction:column;gap:4px}
+.optional-meta input{width:100%;background:var(--card);color:var(--ink);border:1px solid var(--hair-strong);border-radius:8px;padding:10px 12px;font-family:var(--sans);font-size:13px}
+.optional-meta input:focus{outline:none;border-color:var(--primary-glow);box-shadow:0 0 0 3px rgba(26,38,255,.15)}
+.optional-meta input::placeholder{color:var(--muted-soft)}
+.optional-meta .field-label{font-size:11px;color:var(--muted-soft);font-weight:500;text-transform:uppercase;letter-spacing:.05em}
+.row{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0} 
 button{
   background:var(--primary);border:none;color:#fff;padding:11px 20px;border-radius:8px;
   cursor:pointer;font-size:14px;font-weight:500;font-family:var(--sans);letter-spacing:0;
@@ -663,7 +669,18 @@ NetflixId=v%3D3%26ct%3D...; SecureNetflixId=...; nfvdid=..."></textarea>
     <div class="single-result hidden" id="singleResult">
       <div class="result-head">Login URL</div>
       <div id="singleLinks"></div>
-      <div class="meta">Expires : <span id="singleExp"></span></div>
+      <div class="meta">Token Expires: <span id="singleExp"></span></div>
+    </div>
+
+    <div class="optional-meta">
+      <div class="meta-field">
+        <span class="field-label">Plan (isi manual)</span>
+        <input type="text" id="inputPlan" placeholder="Contoh: Basic, Standard, Premium">
+      </div>
+      <div class="meta-field">
+        <span class="field-label">Billing / Plan Expires</span>
+        <input type="date" id="inputBilling">
+      </div>
     </div>
   </div>
 
@@ -813,17 +830,27 @@ function buildLinkRow(label, url, region, plan) {
   var rDiv = document.createElement('div');
   rDiv.textContent = 'Region: ';
   var rSpan = document.createElement('span');
-  rSpan.textContent = region || 'Unknown';
+  rSpan.textContent = region || 'Unknown (estimate)';
   rDiv.appendChild(rSpan);
 
   var pDiv = document.createElement('div');
   pDiv.textContent = 'Plan: ';
   var pSpan = document.createElement('span');
-  pSpan.textContent = plan || 'Unknown';
+  pSpan.textContent = plan || 'Unknown (API limited)';
+  pSpan.style.fontStyle = 'italic';
   pDiv.appendChild(pSpan);
+
+  var nDiv = document.createElement('div');
+  nDiv.textContent = 'Note: ';
+  var nSpan = document.createElement('span');
+  nSpan.textContent = 'Plan/billing date not available via current API';
+  nSpan.style.fontSize = '11px';
+  nSpan.style.color = 'var(--muted-soft)';
+  nDiv.appendChild(nSpan);
 
   metaRow.appendChild(rDiv);
   metaRow.appendChild(pDiv);
+  metaRow.appendChild(nDiv);
   d.appendChild(metaRow);
 
   return d;
