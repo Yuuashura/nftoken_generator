@@ -778,7 +778,7 @@ function buildRow(line, ok) {
   s.textContent = (ok ? '\u25cf ' : '\u2717 ') + line;
   s.style.color = ok ? 'var(--ok)' : 'var(--fail)';
   d.appendChild(s);
-  var re = /https:\/\/netflix\.com\/(?:tv\?|unsupported\?|\?)nftoken=[A-Za-z0-9_\-\+\.\=\~\%]+/g;
+  var re = /https:\/\/netflix\.com\/(?:tv2\?|unsupported\?|\?)nftoken=[A-Za-z0-9_\-\+\.\=\~\%]+/g;
   var match = line.match(re);
   if (match) {
     match.forEach(function (url) {
