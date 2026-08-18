@@ -229,7 +229,7 @@ def build_nftoken_link(token):
 
 NFTOKEN_VARIANTS = (
     ("PC", "https://netflix.com/?nftoken="),
-    ("TV", "https://netflix.com/tv?nftoken="),
+    ("TV", "https://netflix.com/tv2?nftoken="),
     ("HP", "https://netflix.com/unsupported?nftoken="),
 )
 
