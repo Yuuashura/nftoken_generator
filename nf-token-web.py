@@ -810,20 +810,20 @@ body{
 h1{font-family:var(--head);font-size:30px;font-weight:700;letter-spacing:-0.02em;color:var(--ink);line-height:1.15}
 h1 b{color:var(--primary);font-weight:700}
 .sub{color:var(--muted);font-size:14px;margin:4px 0 26px;line-height:1.5}
-.tabs{display:flex;gap:8px;margin-bottom:20px;background:rgba(0,0,0,0.3);padding:4px;border-radius:12px;border:1px solid var(--hair)}
+.tabs{display:flex;gap:8px;margin-bottom:24px;border-bottom:1px solid var(--hairline);padding-bottom:0}
 .tab{
-  flex:1;background:transparent;border:none;color:var(--muted);
-  padding:10px 16px;border-radius:8px;cursor:pointer;font-size:13.5px;font-weight:600;
-  font-family:var(--sans);transition:all .2s ease;text-align:center;
+  background:transparent;border:none;border-bottom:2px solid transparent;color:var(--muted-soft);
+  padding:10px 18px;cursor:pointer;font-size:14px;font-weight:500;
+  font-family:var(--sans);transition:all .15s ease;text-align:center;margin-bottom:-1px;
 }
 .tab:hover{color:var(--ink)}
-.tab.on{background:var(--primary);color:#fff;box-shadow:0 4px 12px var(--primary-glow)}
+.tab.on{color:var(--primary);border-bottom-color:var(--primary);font-weight:600}
 .panel{display:none}
 .panel.on{display:block}
 .card-box{
-  background:var(--card);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
-  border:1px solid var(--hair-strong);border-radius:16px;padding:20px;
-  box-shadow:0 8px 32px rgba(0,0,0,0.4);
+  background:var(--card);
+  border:1px solid var(--hairline);border-radius:16px;padding:28px;
+  box-shadow:0 1px 3px rgba(0,0,0,0.03);
 }
 textarea{
   width:100%;min-height:200px;background:var(--canvas-deep);color:var(--ink);
@@ -839,48 +839,48 @@ textarea:focus{outline:none;background:var(--canvas);border-color:var(--link);bo
 .optional-meta .field-label{font-size:11px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.05em}
 .row{display:flex;gap:10px;flex-wrap:wrap;margin:16px 0 0} 
 button{
-  background:var(--primary);border:none;color:#fff;padding:12px 28px;border-radius:32px;
+  background:var(--primary);border:none;color:#ffffff;padding:12px 26px;border-radius:32px;
   cursor:pointer;font-size:14px;font-weight:500;font-family:var(--sans);
   transition:all .15s ease;
 }
-button:hover{background:var(--cohere-black);transform:translateY(-1px)}
-button.ghost{background:transparent;border:1px solid var(--hairline);color:var(--ink);border-radius:30px;padding:10px 20px}
+button:hover{background:#2d2d35;transform:translateY(-1px)}
+button.ghost{background:#ffffff;border:1px solid var(--hairline);color:var(--ink);border-radius:30px;padding:10px 20px}
 button.ghost:hover{background:var(--canvas-deep);border-color:var(--slate)}
 button:disabled{opacity:.4;cursor:not-allowed;transform:none!important}
 .hint{color:var(--muted);font-size:13px;margin-top:10px}
 .hidden{display:none!important}
 .single-result{margin-top:24px}
-.result-head{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:12px}
+.result-head{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted-soft);margin-bottom:12px}
 .link-card{
-  background:var(--card-elev);border:1px solid var(--hair-strong);border-radius:12px;
-  padding:16px;margin-bottom:12px;box-shadow:0 4px 16px rgba(0,0,0,0.2);
+  background:var(--canvas-deep);border:1px solid var(--hairline);border-radius:8px;
+  padding:18px;margin-bottom:12px;box-shadow:none;
 }
 .link-card .tag{
-  display:inline-block;background:rgba(229,9,20,0.15);color:var(--primary-light);border:1px solid rgba(229,9,20,0.3);
-  font-size:10.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
-  padding:3px 10px;border-radius:9999px;margin-bottom:10px;
+  display:inline-block;background:var(--primary);color:#ffffff;border:none;
+  font-size:10.5px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;
+  padding:2px 10px;border-radius:12px;margin-bottom:10px;font-family:var(--mono);
 }
 .link-card .url-row{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
-.link-card .url-text{flex:1;min-width:0;color:var(--link);font-family:var(--mono);font-size:12px;line-height:1.5;word-break:break-all;text-decoration:none}
+.link-card .url-text{flex:1;min-width:0;color:var(--link);font-family:var(--mono);font-size:13px;line-height:1.5;word-break:break-all;text-decoration:none}
 .link-card .url-text:hover{text-decoration:underline}
-.link-card .meta-row{display:flex;gap:16px;margin-top:12px;padding-top:10px;border-top:1px solid var(--hair);font-size:12px;color:var(--muted);flex-wrap:wrap}
+.link-card .meta-row{display:flex;gap:16px;margin-top:12px;padding-top:10px;border-top:1px solid var(--hairline);font-size:13px;color:var(--body);flex-wrap:wrap}
 .link-card .meta-row span{color:var(--ink);font-weight:500}
 .open-btn, .copy-btn, .action-sm-btn{
-  background:rgba(255,255,255,0.05);border:1px solid var(--hair-strong);color:var(--ink);
-  font-size:11px;font-weight:600;padding:6px 14px;border-radius:6px;cursor:pointer;flex-shrink:0;font-family:var(--sans);transition:all .15s;box-shadow:none;
+  background:#ffffff;border:1px solid var(--hairline);color:var(--ink);
+  font-size:12px;font-weight:500;padding:6px 14px;border-radius:4px;cursor:pointer;flex-shrink:0;font-family:var(--sans);transition:all .15s;box-shadow:none;
 }
-.open-btn:hover, .copy-btn:hover, .action-sm-btn:hover{background:rgba(255,255,255,0.15);border-color:rgba(255,255,255,0.3)}
+.open-btn:hover, .copy-btn:hover, .action-sm-btn:hover{background:var(--primary);color:#ffffff;border-color:var(--primary)}
 
-.badge-live{background:rgba(46,204,113,0.15);color:#2ecc71;border:1px solid rgba(46,204,113,0.3);padding:2px 8px;border-radius:999px;font-size:11px;font-weight:700}
-.badge-dead{background:rgba(255,71,87,0.15);color:#ff4757;border:1px solid rgba(255,71,87,0.3);padding:2px 8px;border-radius:999px;font-size:11px;font-weight:700}
+.badge-live{background:#edfce9;color:#003c33;border:1px solid #b7f0ae;padding:2px 10px;border-radius:12px;font-size:11px;font-family:var(--mono);font-weight:600}
+.badge-dead{background:#fff1f1;color:#b30000;border:1px solid #ffd1d1;padding:2px 10px;border-radius:12px;font-size:11px;font-family:var(--mono);font-weight:600}
 
-.chk-table{width:100%;border-collapse:collapse;margin-top:16px;font-size:12.5px}
-.chk-table th{text-align:left;padding:10px 12px;background:rgba(0,0,0,0.4);color:var(--muted);font-weight:600;border-bottom:1px solid var(--hair-strong);text-transform:uppercase;font-size:10.5px;letter-spacing:0.05em}
-.chk-table td{padding:10px 12px;border-bottom:1px solid var(--hair);color:var(--ink);vertical-align:middle}
-.chk-table tr:hover td{background:rgba(255,255,255,0.02)}
+.chk-table{width:100%;border-collapse:collapse;margin-top:16px;font-size:14px}
+.chk-table th{text-align:left;padding:12px 16px;background:var(--canvas-deep);color:var(--muted-soft);font-family:var(--mono);font-weight:600;border-bottom:1px solid var(--hairline);text-transform:uppercase;font-size:11px;letter-spacing:0.05em}
+.chk-table td{padding:12px 16px;border-bottom:1px solid var(--strong);color:var(--ink);vertical-align:middle}
+.chk-table tr:hover td{background:var(--canvas-deep)}
 .chk-table input[type="checkbox"]{accent-color:var(--primary);width:15px;height:15px;cursor:pointer}
 
-.checker-actions{display:flex;gap:10px;align-items:center;margin-top:16px;flex-wrap:wrap;padding-top:14px;border-top:1px solid var(--hair-strong)}
+.checker-actions{display:flex;gap:10px;align-items:center;margin-top:16px;flex-wrap:wrap;padding:14px;background:var(--canvas-deep);border-radius:8px}
 .single-result .meta{color:var(--muted);font-size:13px;margin-top:8px}
 .single-result .meta span{color:var(--ink);font-weight:600}
 .bar{height:8px;background:var(--card);border:1px solid var(--hair-strong);border-radius:9999px;margin:12px 0;overflow:hidden}
@@ -1066,7 +1066,7 @@ NetflixId=v%3D3%26ct%3D...; SecureNetflixId=v%3D3%26mac%3D..."></textarea>
           <button class="action-sm-btn" id="chkSelectAll">Select All Live</button>
           <button class="action-sm-btn" id="chkDeselectAll">Deselect All</button>
           <span style="flex:1;"></span>
-          <button id="btnGenSelected" style="background:#e50914;">🚀 Generate NF Tokens for Selected (<span id="selectedCount">0</span>)</button>
+          <button id="btnGenSelected" style="background:var(--link);">🚀 Generate NF Tokens for Selected (<span id="selectedCount">0</span>)</button>
         </div>
 
         <div style="overflow-x:auto;margin-top:12px;">
