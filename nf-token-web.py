@@ -833,10 +833,10 @@ textarea{
 textarea:focus{outline:none;background:var(--canvas);border-color:var(--link);box-shadow:0 0 0 3px rgba(24,99,220,0.12)}
 .optional-meta{display:flex;gap:12px;margin-top:14px;flex-wrap:wrap}
 .optional-meta .meta-field{flex:1;min-width:180px;display:flex;flex-direction:column;gap:6px}
-.optional-meta input{width:100%;background:rgba(10,10,14,0.7);color:var(--ink);border:1px solid var(--hair);border-radius:8px;padding:10px 12px;font-family:var(--sans);font-size:13px;transition:all .2s}
-.optional-meta input:focus{outline:none;border-color:var(--primary);box-shadow:0 0 0 3px var(--primary-glow)}
-.optional-meta input::placeholder{color:var(--muted-soft)}
-.optional-meta .field-label{font-size:11px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.05em}
+.optional-meta input{width:100%;background:var(--canvas);color:var(--ink);border:1px solid var(--hairline);border-radius:6px;padding:10px 12px;font-family:var(--sans);font-size:14px;transition:all .15s}
+.optional-meta input:focus{outline:none;border-color:var(--link);box-shadow:0 0 0 3px rgba(24,99,220,0.12)}
+.optional-meta input::placeholder{color:var(--muted)}
+.optional-meta .field-label{font-size:11px;color:var(--muted-soft);font-weight:600;text-transform:uppercase;letter-spacing:.05em}
 .row{display:flex;gap:10px;flex-wrap:wrap;margin:16px 0 0} 
 button{
   background:var(--primary);border:none;color:#ffffff;padding:12px 26px;border-radius:32px;
@@ -905,14 +905,14 @@ button:disabled{opacity:.4;cursor:not-allowed;transform:none!important}
 }
 .wm{
   padding:12px 0;
-  border-bottom:1px solid var(--hair);
+  border-bottom:1px solid var(--hairline);
   display:flex;gap:18px;flex-wrap:wrap;align-items:center;
-  color:var(--muted);font-size:13px;
+  color:var(--muted-soft);font-size:13px;
   margin-bottom:28px;
 }
-.wm .who{color:var(--body);font-weight:600}
-.wm a{color:var(--muted);text-decoration:none}
-.wm a:hover{color:var(--primary-glow)}
+.wm .who{color:var(--ink);font-weight:600}
+.wm a{color:var(--muted-soft);text-decoration:none;transition:color 0.15s}
+.wm a:hover{color:var(--link)}
 @media (max-width:640px){
   body{padding:24px 16px}
   h1{font-size:24px}
