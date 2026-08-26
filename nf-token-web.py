@@ -8,6 +8,7 @@ import re
 import threading
 import time
 import uuid
+import zipfile
 from datetime import datetime
 import requests
 from urllib3.exceptions import InsecureRequestWarning
@@ -181,6 +182,42 @@ def parse_block(text):
     if cookie_dict and REQUIRED_COOKIE in cookie_dict:
         return cookie_dict, None
     return None, "Missing required cookie: " + REQUIRED_COOKIE
+
+
+def extract_payload_text(req):
+    """Extract cookie text from JSON payload or uploaded file (.txt or .zip)."""
+    if req.files and "file" in req.files:
+        file_obj = req.files["file"]
+        filename = (file_obj.filename or "").lower()
+        if filename.endswith(".zip"):
+            try:
+                zip_data = io.BytesIO(file_obj.read())
+                texts = []
+                with zipfile.ZipFile(zip_data, "r") as zf:
+                    for idx, name in enumerate(zf.namelist(), 1):
+                        if name.startswith("__MACOSX") or name.endswith("/"):
+                            continue
+                        if name.lower().endswith(".txt"):
+                            try:
+                                content = zf.read(name).decode("utf-8", errors="ignore")
+                                if content.strip():
+                                    email_match = re.search(r'([a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})', name + "\n" + content)
+                                    email_str = email_match.group(1) if email_match else f"zip_{idx}"
+                                    texts.append(f"# [{idx}] {email_str}\n{content.strip()}")
+                            except Exception:
+                                pass
+                return "\n\n".join(texts)
+            except Exception as exc:
+                raise ValueError(f"Gagal ekstrak file .zip: {exc}")
+        else:
+            try:
+                return file_obj.read().decode("utf-8", errors="ignore")
+            except Exception as exc:
+                raise ValueError(f"Gagal baca file text: {exc}")
+
+    body = req.get_json(silent=True) or {}
+    text = body.get("text") or req.form.get("text") or ""
+    return text if isinstance(text, str) else ""
 
 
 def split_cookie_blocks(text):
@@ -547,13 +584,12 @@ def api_bulk_stop(job_id):
 
 @app.route("/api/bulk/start", methods=["POST"])
 def api_bulk_start():
-    body = request.get_json(silent=True) or {}
-    text = body.get("text") or ""
-    if not isinstance(text, str):
-        return jsonify({"ok": False, "error": "Payload tidak valid."})
-    text = text.strip()
+    try:
+        text = extract_payload_text(request).strip()
+    except Exception as exc:
+        return jsonify({"ok": False, "error": str(exc)})
     if not text:
-        return jsonify({"ok": False, "error": "Input kosong."})
+        return jsonify({"ok": False, "error": "Input kosong atau file tidak valid."})
 
     blocks = split_cookie_blocks(text)
     if not blocks:
@@ -621,13 +657,12 @@ def api_bulk_download(job_id):
 
 @app.route("/api/checker/start", methods=["POST"])
 def api_checker_start():
-    body = request.get_json(silent=True) or {}
-    text = body.get("text") or ""
-    if not isinstance(text, str):
-        return jsonify({"ok": False, "error": "Payload tidak valid."})
-    text = text.strip()
+    try:
+        text = extract_payload_text(request).strip()
+    except Exception as exc:
+        return jsonify({"ok": False, "error": str(exc)})
     if not text:
-        return jsonify({"ok": False, "error": "Input kosong."})
+        return jsonify({"ok": False, "error": "Input kosong atau file tidak valid."})
 
     blocks = split_cookie_blocks(text)
     if not blocks:
@@ -954,7 +989,15 @@ NetflixId=v%3D3%26ct%3D...; SecureNetflixId=...; nfvdid=..."></textarea>
 
   <div class="panel" id="panelBulk">
     <div class="card-box">
-      <textarea id="taBulk" spellcheck="false" placeholder="Tempel banyak akun. Bisa campur format, pisahkan tiap akun dengan baris kosong / komentar / header:
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;flex-wrap:wrap;gap:8px;">
+        <div class="input-label" style="margin-bottom:0;">Tempel atau Upload File Cookie (.txt / .zip)</div>
+        <div>
+          <input type="file" id="fileBulkInput" accept=".txt,.zip" style="display:none;">
+          <button class="ghost" id="btnUploadBulk" style="padding:6px 14px;font-size:12px;">📁 Upload File (.txt / .zip)</button>
+        </div>
+      </div>
+      <div id="fileBulkBadge" class="hidden" style="font-size:12px;color:var(--primary-light);background:rgba(229,9,20,0.1);padding:6px 12px;border-radius:6px;margin-bottom:10px;border:1px solid rgba(229,9,20,0.2);"></div>
+      <textarea id="taBulk" spellcheck="false" placeholder="Tempel banyak akun atau upload file (.txt/.zip). Bisa campur format, pisahkan tiap akun dengan baris kosong / komentar / header:
 
 # [1] akun.satu@gmail.com
 .netflix.com  TRUE  /  TRUE  1779826982  NetflixId  v%3D3%26ct%3Dxxx..
@@ -983,8 +1026,15 @@ NetflixId=v%3D3%26ct%3Dyyy..; SecureNetflixId=...; nfvdid=..
 
   <div class="panel" id="panelChecker">
     <div class="card-box">
-      <div class="input-label">Tempelkan Cookie Akun Netflix (Netscape / JSON / Raw) untuk Di-Check</div>
-      <textarea id="taChecker" spellcheck="false" placeholder="Tempelkan banyak cookie akun di sini untuk memeriksa mana yang LIVE beserta Plan dan Billing Date:
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;flex-wrap:wrap;gap:8px;">
+        <div class="input-label" style="margin-bottom:0;">Tempel atau Upload File Cookie (.txt / .zip) untuk Di-Check</div>
+        <div>
+          <input type="file" id="fileCheckerInput" accept=".txt,.zip" style="display:none;">
+          <button class="ghost" id="btnUploadChecker" style="padding:6px 14px;font-size:12px;">📁 Upload File (.txt / .zip)</button>
+        </div>
+      </div>
+      <div id="fileCheckerBadge" class="hidden" style="font-size:12px;color:var(--primary-light);background:rgba(229,9,20,0.1);padding:6px 12px;border-radius:6px;margin-bottom:10px;border:1px solid rgba(229,9,20,0.2);"></div>
+      <textarea id="taChecker" spellcheck="false" placeholder="Tempelkan banyak cookie akun di sini atau upload file (.txt/.zip) untuk memeriksa mana yang LIVE beserta Plan dan Billing Date:
 
 # [1] user1@gmail.com
 .netflix.com  TRUE  /  TRUE  1779826982  NetflixId  v%3D3%26ct%3D...
@@ -1071,6 +1121,43 @@ $('clearSingle').onclick = function () {
   $('singleResult').classList.add('hidden');
 };
 $('exBulk').onclick = function () { $('taBulk').value = exBulkText; };
+// File upload handlers for Bulk & Checker
+var bulkSelectedFile = null;
+var checkerSelectedFile = null;
+
+function setupFileUpload(btnId, inputId, badgeId, taId, setFileCallback) {
+  var btn = $(btnId);
+  var input = $(inputId);
+  var badge = $(badgeId);
+  var ta = $(taId);
+  if (!btn || !input) return;
+
+  btn.onclick = function () { input.click(); };
+
+  input.onchange = function (e) {
+    var file = e.target.files[0];
+    if (!file) return;
+
+    if (file.name.toLowerCase().endswith('.zip')) {
+      setFileCallback(file);
+      badge.textContent = '📦 Selected ZIP: ' + file.name + ' (' + (file.size / 1024).toFixed(1) + ' KB)';
+      badge.classList.remove('hidden');
+    } else {
+      var reader = new FileReader();
+      reader.onload = function (evt) {
+        ta.value = evt.target.result;
+        setFileCallback(null);
+        badge.textContent = '📄 Loaded Text File: ' + file.name;
+        badge.classList.remove('hidden');
+      };
+      reader.readAsText(file);
+    }
+  };
+}
+
+setupFileUpload('btnUploadBulk', 'fileBulkInput', 'fileBulkBadge', 'taBulk', function (file) { bulkSelectedFile = file; });
+setupFileUpload('btnUploadChecker', 'fileCheckerInput', 'fileCheckerBadge', 'taChecker', function (file) { checkerSelectedFile = file; });
+
 $('clearBulk').onclick = function () {
   $('taBulk').value = '';
   $('bulkErr').classList.add('hidden');
@@ -1080,6 +1167,9 @@ $('clearBulk').onclick = function () {
   $('bulkList').classList.add('hidden');
   $('bulkList').textContent = '';
   $('dlBulk').classList.add('hidden');
+  $('fileBulkBadge').classList.add('hidden');
+  $('fileBulkInput').value = '';
+  bulkSelectedFile = null;
 };
 
 function copyText(t, btn) {
@@ -1269,8 +1359,8 @@ $('stopBulk').onclick = function () {
 
 $('startBulk').onclick = function () {
   var text = $('taBulk').value;
-  if (!text.trim()) {
-    $('bulkErr').textContent = 'Input kosong. Tempel akun dulu (klik Contoh untuk lihat format).';
+  if (!text.trim() && !bulkSelectedFile) {
+    $('bulkErr').textContent = 'Input kosong. Tempel cookie atau upload file (.txt/.zip) dulu.';
     $('bulkErr').classList.remove('hidden');
     return;
   }
@@ -1288,11 +1378,17 @@ $('startBulk').onclick = function () {
   $('dlBulk').classList.add('hidden');
   $('stopBulk').classList.add('hidden');
 
-  fetch('/api/bulk/start', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ text: text })
-  }).then(function (r) { return r.json(); }).then(function (data) {
+  var fetchOpts = { method: 'POST' };
+  if (bulkSelectedFile) {
+    var formData = new FormData();
+    formData.append('file', bulkSelectedFile);
+    fetchOpts.body = formData;
+  } else {
+    fetchOpts.headers = { 'Content-Type': 'application/json' };
+    fetchOpts.body = JSON.stringify({ text: text });
+  }
+
+  fetch('/api/bulk/start', fetchOpts).then(function (r) { return r.json(); }).then(function (data) {
     if (!data.ok) {
       btn.disabled = false;
       $('bulkErr').textContent = 'Gagal: ' + data.error;
@@ -1380,6 +1476,9 @@ $('clearChecker').onclick = function () {
   $('chkTableBody').textContent = '';
   $('genSelectedResult').classList.add('hidden');
   $('genSelectedLinks').textContent = '';
+  $('fileCheckerBadge').classList.add('hidden');
+  $('fileCheckerInput').value = '';
+  checkerSelectedFile = null;
   checkedItemsMap = {};
   updateSelectedCount();
 };
@@ -1478,8 +1577,8 @@ $('stopChecker').onclick = function () {
 
 $('startChecker').onclick = function () {
   var text = $('taChecker').value;
-  if (!text.trim()) {
-    $('chkErr').textContent = 'Input kosong. Tempel cookie akun dulu.';
+  if (!text.trim() && !checkerSelectedFile) {
+    $('chkErr').textContent = 'Input kosong. Tempel cookie atau upload file (.txt/.zip) dulu.';
     $('chkErr').classList.remove('hidden');
     return;
   }
@@ -1500,11 +1599,17 @@ $('startChecker').onclick = function () {
   checkedItemsMap = {};
   updateSelectedCount();
 
-  fetch('/api/checker/start', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ text: text })
-  }).then(function (r) { return r.json(); }).then(function (data) {
+  var fetchOpts = { method: 'POST' };
+  if (checkerSelectedFile) {
+    var formData = new FormData();
+    formData.append('file', checkerSelectedFile);
+    fetchOpts.body = formData;
+  } else {
+    fetchOpts.headers = { 'Content-Type': 'application/json' };
+    fetchOpts.body = JSON.stringify({ text: text });
+  }
+
+  fetch('/api/checker/start', fetchOpts).then(function (r) { return r.json(); }).then(function (data) {
     if (!data.ok) {
       btn.disabled = false;
       btn.textContent = '🔍 Check Active Cookies';
