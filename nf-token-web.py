@@ -9,6 +9,10 @@ import threading
 import time
 import uuid
 from datetime import datetime
+import requests
+from urllib3.exceptions import InsecureRequestWarning
+
+requests.packages.urllib3.disable_warnings(category=InsecureRequestWarning)
 
 from flask import Flask, Response, jsonify, request, send_file, stream_with_context
 
@@ -32,9 +36,67 @@ app = Flask(__name__)
 app.config["MAX_CONTENT_LENGTH"] = 2 * 1024 * 1024
 
 JOBS = {}
+CHECKER_JOBS = {}
 JOBS_LOCK = threading.RLock()
 BULK_DELAY = 0.5
 FETCH_TIMEOUT = 10
+
+
+def check_netflix_membership(cookie_dict, timeout=10):
+    """Check live status, real plan, and billing date from Netflix membership page."""
+    if not cookie_dict or REQUIRED_COOKIE not in cookie_dict:
+        return False, "No Cookie", "-", "Unknown"
+
+    cookies = dict(cookie_dict)
+    for k in ['NetflixId', 'SecureNetflixId']:
+        if k in cookies and isinstance(cookies[k], str):
+            cookies[k] = cookies[k].strip().rstrip('.')
+
+    region_hint, _ = fetch_account_info(cookies)
+
+    headers = {
+        'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+        'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+        'Accept-Language': 'en-US,en;q=0.5',
+        'Referer': 'https://www.netflix.com/browse',
+        'Cache-Control': 'max-age=0'
+    }
+
+    try:
+        session = requests.Session()
+        session.get('https://www.netflix.com/browse', headers=headers, cookies=cookies, timeout=timeout, verify=False)
+        time.sleep(0.3)
+
+        headers['Cookie'] = '; '.join(f"{k}={cookies[k]}" for k in cookies if isinstance(cookies[k], str))
+        r = session.get('https://www.netflix.com/account/membership', headers=headers, timeout=timeout, verify=False)
+
+        if r.status_code != 200:
+            return False, "Invalid Session", "-", region_hint
+
+        html = r.text
+
+        if re.search(r'4K video resolution[^<]*?(?:spatial audio|ad-free)', html, re.I):
+            plan_detected = '4K 🔥'
+        else:
+            plan_match = re.search(
+                r'data-uia="account-membership-page\+plan-card\+title"[^>]*>([^<]{1,30}?)<',
+                html
+            )
+            plan_detected = plan_match.group(1).strip() if plan_match else 'Live'
+
+        date_match = re.search(
+            r'<h3[^>]*data-uia="account-membership-page\+payments-card\+title"[^>]*>Next payment</h3>[^<]*<p[^>]*data-uia="account-membership-page\+payments-card\+description"[^>]*>([^<]+?)</p>',
+            html,
+            re.DOTALL | re.I
+        )
+        date = date_match.group(1).strip() if date_match else '-'
+
+        if 'account-membership-page' in html or 'data-uia="account-membership-page' in html or 'plan-card' in html:
+            return True, plan_detected, date, region_hint
+
+        return False, "Dead", "-", region_hint
+    except Exception as e:
+        return False, f"Error: {e}", "-", region_hint
 
 
 def fetch_account_info(cookie_dict):
@@ -239,6 +301,85 @@ class BulkJob:
 
     def publish(self, payload):
         self.events.put(payload)
+
+
+class BulkCheckerJob:
+    def __init__(self, job_id, blocks):
+        self.job_id = job_id
+        self.blocks = blocks
+        self.total = len(blocks)
+        self.done = 0
+        self.live_count = 0
+        self.dead_count = 0
+        self.finished = False
+        self.cancelled = False
+        self.fatal = None
+        self.results = []
+        self.events = queue.Queue()
+        self.stop_event = threading.Event()
+
+    def publish(self, payload):
+        self.events.put(payload)
+
+
+def process_checker_job(job_id):
+    job = CHECKER_JOBS.get(job_id)
+    if not job:
+        return
+    try:
+        for position, (number, email, block_text) in enumerate(job.blocks, 1):
+            if job.stop_event.is_set():
+                job.cancelled = True
+                break
+            cookie_dict, error = parse_block(block_text)
+            label = email or ("#" + str(number) if number else "Account " + str(position))
+            
+            if error or not cookie_dict:
+                is_live = False
+                plan = "Missing Cookie"
+                billing = "-"
+                country = "Unknown"
+            else:
+                is_live, plan, billing, country = check_netflix_membership(cookie_dict, timeout=FETCH_TIMEOUT)
+
+            if is_live:
+                job.live_count += 1
+            else:
+                job.dead_count += 1
+
+            item = {
+                "id": str(position),
+                "position": position,
+                "label": label,
+                "is_live": is_live,
+                "plan": plan,
+                "billing": billing,
+                "country": country,
+                "cookie_dict": cookie_dict if is_live else None,
+                "error": error if not is_live else None
+            }
+            job.results.append(item)
+            job.done = position
+            job.publish({
+                "position": position,
+                "total": job.total,
+                "item": item
+            })
+            if position < job.total and not job.stop_event.is_set():
+                time.sleep(BULK_DELAY)
+    except Exception as exc:
+        job.fatal = str(exc)
+    finally:
+        job.finished = True
+        job.publish({
+            "position": job.done,
+            "total": job.total,
+            "finished": True,
+            "cancelled": job.cancelled,
+            "fatal": job.fatal,
+            "live_count": job.live_count,
+            "dead_count": job.dead_count
+        })
 
 
 def process_job(job_id):
@@ -478,6 +619,110 @@ def api_bulk_download(job_id):
     )
 
 
+@app.route("/api/checker/start", methods=["POST"])
+def api_checker_start():
+    body = request.get_json(silent=True) or {}
+    text = body.get("text") or ""
+    if not isinstance(text, str):
+        return jsonify({"ok": False, "error": "Payload tidak valid."})
+    text = text.strip()
+    if not text:
+        return jsonify({"ok": False, "error": "Input kosong."})
+
+    blocks = split_cookie_blocks(text)
+    if not blocks:
+        return jsonify({"ok": False, "error": "Tidak ada blok cookie yang dikenali."})
+
+    with JOBS_LOCK:
+        job_id = uuid.uuid4().hex[:12]
+        job = BulkCheckerJob(job_id, blocks)
+        CHECKER_JOBS[job_id] = job
+        while len(CHECKER_JOBS) > MAX_JOBS:
+            for old_id in list(CHECKER_JOBS):
+                if CHECKER_JOBS[old_id].finished:
+                    del CHECKER_JOBS[old_id]
+                    break
+
+    thread = threading.Thread(target=process_checker_job, args=(job_id,), daemon=True)
+    thread.start()
+    return jsonify({"ok": True, "job_id": job_id, "total": job.total})
+
+
+@app.route("/api/checker/stop/<job_id>", methods=["POST"])
+def api_checker_stop(job_id):
+    with JOBS_LOCK:
+        job = CHECKER_JOBS.get(job_id)
+    if job is None:
+        return jsonify({"ok": False, "error": "Unknown job"}), 404
+    job.stop_event.set()
+    return jsonify({"ok": True, "cancelled": job.cancelled})
+
+
+@app.route("/api/checker/events/<job_id>")
+def api_checker_events(job_id):
+    with JOBS_LOCK:
+        job = CHECKER_JOBS.get(job_id)
+    if job is None:
+        return jsonify({"ok": False, "error": "Unknown job"}), 404
+
+    def generate():
+        while True:
+            try:
+                event = job.events.get(timeout=3)
+                yield "data: %s\n\n" % json.dumps(event)
+                if event.get("finished"):
+                    return
+            except queue.Empty:
+                if job.finished:
+                    return
+                continue
+
+    return Response(stream_with_context(generate()), mimetype="text/event-stream")
+
+
+@app.route("/api/checker/generate-selected", methods=["POST"])
+def api_checker_generate_selected():
+    body = request.get_json(silent=True) or {}
+    items = body.get("items") or []
+    if not isinstance(items, list) or not items:
+        return jsonify({"ok": False, "error": "Tidak ada akun aktif yang dipilih."})
+
+    results = []
+    for item in items:
+        label = item.get("label") or "Account"
+        cookie_dict = item.get("cookie_dict") or {}
+        if not cookie_dict or REQUIRED_COOKIE not in cookie_dict:
+            results.append({
+                "label": label,
+                "ok": False,
+                "error": "Cookie tidak valid / NetflixId hilang"
+            })
+            continue
+
+        try:
+            token, expires = nfgen.fetch_nftoken(cookie_dict, timeout=FETCH_TIMEOUT)
+            results.append({
+                "label": label,
+                "ok": True,
+                "plan": item.get("plan") or "Live",
+                "billing": item.get("billing") or "-",
+                "country": item.get("country") or "Unknown",
+                "urls": [
+                    {"label": l, "url": u}
+                    for l, u in nfgen.build_nftoken_links(token)
+                ],
+                "expires": nfgen.format_expiry(expires)
+            })
+        except Exception as exc:
+            results.append({
+                "label": label,
+                "ok": False,
+                "error": str(exc)
+            })
+
+    return jsonify({"ok": True, "results": results})
+
+
 PAGE = r"""<!DOCTYPE html>
 <html lang="id">
 <head>
@@ -583,11 +828,22 @@ button:disabled{opacity:.4;cursor:not-allowed;transform:none!important}
 .link-card .url-text:hover{text-decoration:underline}
 .link-card .meta-row{display:flex;gap:16px;margin-top:12px;padding-top:10px;border-top:1px solid var(--hair);font-size:12px;color:var(--muted);flex-wrap:wrap}
 .link-card .meta-row span{color:var(--ink);font-weight:500}
-.open-btn, .copy-btn{
+.open-btn, .copy-btn, .action-sm-btn{
   background:rgba(255,255,255,0.05);border:1px solid var(--hair-strong);color:var(--ink);
   font-size:11px;font-weight:600;padding:6px 14px;border-radius:6px;cursor:pointer;flex-shrink:0;font-family:var(--sans);transition:all .15s;box-shadow:none;
 }
-.open-btn:hover, .copy-btn:hover{background:rgba(255,255,255,0.15);border-color:rgba(255,255,255,0.3)}
+.open-btn:hover, .copy-btn:hover, .action-sm-btn:hover{background:rgba(255,255,255,0.15);border-color:rgba(255,255,255,0.3)}
+
+.badge-live{background:rgba(46,204,113,0.15);color:#2ecc71;border:1px solid rgba(46,204,113,0.3);padding:2px 8px;border-radius:999px;font-size:11px;font-weight:700}
+.badge-dead{background:rgba(255,71,87,0.15);color:#ff4757;border:1px solid rgba(255,71,87,0.3);padding:2px 8px;border-radius:999px;font-size:11px;font-weight:700}
+
+.chk-table{width:100%;border-collapse:collapse;margin-top:16px;font-size:12.5px}
+.chk-table th{text-align:left;padding:10px 12px;background:rgba(0,0,0,0.4);color:var(--muted);font-weight:600;border-bottom:1px solid var(--hair-strong);text-transform:uppercase;font-size:10.5px;letter-spacing:0.05em}
+.chk-table td{padding:10px 12px;border-bottom:1px solid var(--hair);color:var(--ink);vertical-align:middle}
+.chk-table tr:hover td{background:rgba(255,255,255,0.02)}
+.chk-table input[type="checkbox"]{accent-color:var(--primary);width:15px;height:15px;cursor:pointer}
+
+.checker-actions{display:flex;gap:10px;align-items:center;margin-top:16px;flex-wrap:wrap;padding-top:14px;border-top:1px solid var(--hair-strong)}
 .single-result .meta{color:var(--muted);font-size:13px;margin-top:8px}
 .single-result .meta span{color:var(--ink);font-weight:600}
 .bar{height:8px;background:var(--card);border:1px solid var(--hair-strong);border-radius:9999px;margin:12px 0;overflow:hidden}
@@ -654,7 +910,8 @@ button:disabled{opacity:.4;cursor:not-allowed;transform:none!important}
 
   <div class="tabs">
     <button class="tab on" id="tabSingle">Single Mode</button>
-    <button class="tab" id="tabBulk">Bulk Mode</button>
+    <button class="tab" id="tabBulk">Bulk Generator</button>
+    <button class="tab" id="tabChecker">Checker &amp; Generator</button>
   </div>
 
   <div class="panel on" id="panelSingle">
@@ -695,7 +952,8 @@ NetflixId=v%3D3%26ct%3D...; SecureNetflixId=...; nfvdid=..."></textarea>
   </div>
 
   <div class="panel" id="panelBulk">
-    <textarea id="taBulk" spellcheck="false" placeholder="Tempel banyak akun. Bisa campur format, pisahkan tiap akun dengan baris kosong / komentar / header:
+    <div class="card-box">
+      <textarea id="taBulk" spellcheck="false" placeholder="Tempel banyak akun. Bisa campur format, pisahkan tiap akun dengan baris kosong / komentar / header:
 
 # [1] akun.satu@gmail.com
 .netflix.com  TRUE  /  TRUE  1779826982  NetflixId  v%3D3%26ct%3Dxxx..
@@ -707,18 +965,74 @@ NetflixId=v%3D3%26ct%3Dyyy..; SecureNetflixId=...; nfvdid=..
 
 [3] akun.tiga@gmail.com
 { &quot;NetflixId&quot;: &quot;...&quot; }"></textarea>
-    <div class="row">
-      <button id="startBulk">Generate Semua</button>
-      <button class="ghost" id="exBulk">Contoh</button>
-      <button class="ghost" id="clearBulk">Bersihkan</button>
-      <button class="ghost hidden" id="dlBulk">Download .txt</button>
+      <div class="row">
+        <button id="startBulk">Generate Semua</button>
+        <button class="ghost" id="exBulk">Contoh</button>
+        <button class="ghost" id="clearBulk">Bersihkan</button>
+        <button class="ghost hidden" id="dlBulk">Download .txt</button>
+      </div>
+      <div class="err hidden" id="bulkErr"></div>
+      <div class="hint hidden" id="bulkHint"></div>
+      <div class="bar hidden" id="barWrap"><i id="barFill"></i></div>
+      <div class="sum hidden" id="bulkSum"></div>
+      <button class="ghost hidden" id="stopBulk">Stop</button>
+      <div class="list hidden" id="bulkList"></div>
     </div>
-    <div class="err hidden" id="bulkErr"></div>
-    <div class="hint hidden" id="bulkHint"></div>
-    <div class="bar hidden" id="barWrap"><i id="barFill"></i></div>
-    <div class="sum hidden" id="bulkSum"></div>
-    <button class="ghost hidden" id="stopBulk">Stop</button>
-    <div class="list hidden" id="bulkList"></div>
+  </div>
+
+  <div class="panel" id="panelChecker">
+    <div class="card-box">
+      <div class="input-label">Tempelkan Cookie Akun Netflix (Netscape / JSON / Raw) untuk Di-Check</div>
+      <textarea id="taChecker" spellcheck="false" placeholder="Tempelkan banyak cookie akun di sini untuk memeriksa mana yang LIVE beserta Plan dan Billing Date:
+
+# [1] user1@gmail.com
+.netflix.com  TRUE  /  TRUE  1779826982  NetflixId  v%3D3%26ct%3D...
+.netflix.com  TRUE  /  TRUE  1779826982  SecureNetflixId  v%3D3%26mac%3D...
+
+# [2] user2@gmail.com
+NetflixId=v%3D3%26ct%3D...; SecureNetflixId=v%3D3%26mac%3D..."></textarea>
+      <div class="row">
+        <button id="startChecker">🔍 Check Active Cookies</button>
+        <button class="ghost" id="exChecker">Contoh</button>
+        <button class="ghost" id="clearChecker">Bersihkan</button>
+        <button class="ghost hidden" id="stopChecker">Stop Check</button>
+      </div>
+
+      <div class="err hidden" id="chkErr"></div>
+      <div class="hint hidden" id="chkHint"></div>
+      <div class="bar hidden" id="chkBarWrap"><i id="chkBarFill"></i></div>
+      <div class="sum hidden" id="chkSum"></div>
+
+      <div class="checker-results hidden" id="chkResultsArea">
+        <div class="checker-actions">
+          <button class="action-sm-btn" id="chkSelectAll">Select All Live</button>
+          <button class="action-sm-btn" id="chkDeselectAll">Deselect All</button>
+          <span style="flex:1;"></span>
+          <button id="btnGenSelected" style="background:#e50914;">🚀 Generate NF Tokens for Selected (<span id="selectedCount">0</span>)</button>
+        </div>
+
+        <div style="overflow-x:auto;margin-top:12px;">
+          <table class="chk-table">
+            <thead>
+              <tr>
+                <th style="width:40px;"><input type="checkbox" id="chkMaster"></th>
+                <th style="width:70px;">Status</th>
+                <th>Email / Label</th>
+                <th>Plan Asli</th>
+                <th>Next Billing</th>
+                <th>Country</th>
+              </tr>
+            </thead>
+            <tbody id="chkTableBody"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="single-result hidden" id="genSelectedResult" style="margin-top:28px;">
+        <div class="result-head">Generated NF Tokens for Selected Active Accounts</div>
+        <div id="genSelectedLinks"></div>
+      </div>
+    </div>
   </div>
 
 </div>
@@ -735,14 +1049,19 @@ var exSingleText = JSON.stringify({
 var exBulkText = '# [1] akun.contoh@gmail.com\n.netflix.com\tTRUE\t/\tTRUE\t1779826982\tNetflixId\tv%3D3%26ct%3Dxxx..\n.netflix.com\tTRUE\t/\tTRUE\t1779826982\tSecureNetflixId\tv%3D3%26mac%3Dxxx.\n.netflix.com\tTRUE\t/\tTRUE\t1779826982\tnfvdid\tBQFm..\n\n# [2] akun.raw@gmail.com\nNetflixId=v%3D3%26ct%3Dyyy..; SecureNetflixId=v%3D3%26mac%3Dyyy.; nfvdid=BQFm..';
 
 function switchTab(name) {
-  var single = name === 'single';
-  $('tabSingle').classList.toggle('on', single);
-  $('tabBulk').classList.toggle('on', !single);
-  $('panelSingle').classList.toggle('on', single);
-  $('panelBulk').classList.toggle('on', !single);
+  var isSingle = name === 'single';
+  var isBulk = name === 'bulk';
+  var isChecker = name === 'checker';
+  $('tabSingle').classList.toggle('on', isSingle);
+  $('tabBulk').classList.toggle('on', isBulk);
+  $('tabChecker').classList.toggle('on', isChecker);
+  $('panelSingle').classList.toggle('on', isSingle);
+  $('panelBulk').classList.toggle('on', isBulk);
+  $('panelChecker').classList.toggle('on', isChecker);
 }
 $('tabSingle').onclick = function () { switchTab('single'); };
 $('tabBulk').onclick = function () { switchTab('bulk'); };
+$('tabChecker').onclick = function () { switchTab('checker'); };
 
 $('exSingle').onclick = function () { $('taSingle').value = exSingleText; };
 $('clearSingle').onclick = function () {
@@ -1040,6 +1359,276 @@ $('startBulk').onclick = function () {
     btn.disabled = false;
     $('bulkErr').textContent = 'Request error: ' + e;
     $('bulkErr').classList.remove('hidden');
+  });
+};
+
+// Checker & Generator Tab JS
+var chkSse = null;
+var chkJobId = null;
+var chkStartedAt = null;
+var checkedItemsMap = {};
+
+$('exChecker').onclick = function () { $('taChecker').value = exBulkText; };
+$('clearChecker').onclick = function () {
+  $('taChecker').value = '';
+  $('chkErr').classList.add('hidden');
+  $('chkHint').classList.add('hidden');
+  $('chkBarWrap').classList.add('hidden');
+  $('chkSum').classList.add('hidden');
+  $('chkResultsArea').classList.add('hidden');
+  $('chkTableBody').textContent = '';
+  $('genSelectedResult').classList.add('hidden');
+  $('genSelectedLinks').textContent = '';
+  checkedItemsMap = {};
+  updateSelectedCount();
+};
+
+function updateSelectedCount() {
+  var count = 0;
+  var checkboxes = document.querySelectorAll('.chk-item-cb');
+  checkboxes.forEach(function (cb) {
+    if (cb.checked) count++;
+  });
+  $('selectedCount').textContent = count;
+}
+
+$('chkMaster').onclick = function () {
+  var checked = $('chkMaster').checked;
+  var checkboxes = document.querySelectorAll('.chk-item-cb');
+  checkboxes.forEach(function (cb) {
+    cb.checked = checked;
+  });
+  updateSelectedCount();
+};
+
+$('chkSelectAll').onclick = function () {
+  var checkboxes = document.querySelectorAll('.chk-item-cb');
+  checkboxes.forEach(function (cb) {
+    cb.checked = true;
+  });
+  $('chkMaster').checked = true;
+  updateSelectedCount();
+};
+
+$('chkDeselectAll').onclick = function () {
+  var checkboxes = document.querySelectorAll('.chk-item-cb');
+  checkboxes.forEach(function (cb) {
+    cb.checked = false;
+  });
+  $('chkMaster').checked = false;
+  updateSelectedCount();
+};
+
+function addCheckerRow(item) {
+  var tr = document.createElement('tr');
+  tr.id = 'chk-row-' + item.id;
+  
+  var tdCb = document.createElement('td');
+  if (item.is_live && item.cookie_dict) {
+    var cb = document.createElement('input');
+    cb.type = 'checkbox';
+    cb.className = 'chk-item-cb';
+    cb.checked = true; // default check live accounts
+    cb.dataset.id = item.id;
+    cb.onchange = updateSelectedCount;
+    tdCb.appendChild(cb);
+    checkedItemsMap[item.id] = item;
+  } else {
+    tdCb.textContent = '-';
+  }
+  tr.appendChild(tdCb);
+
+  var tdStatus = document.createElement('td');
+  var badge = document.createElement('span');
+  badge.className = item.is_live ? 'badge-live' : 'badge-dead';
+  badge.textContent = item.is_live ? 'LIVE' : 'DEAD';
+  tdStatus.appendChild(badge);
+  tr.appendChild(tdStatus);
+
+  var tdLabel = document.createElement('td');
+  tdLabel.textContent = item.label;
+  tdLabel.style.fontWeight = '500';
+  tr.appendChild(tdLabel);
+
+  var tdPlan = document.createElement('td');
+  tdPlan.textContent = item.plan || '-';
+  if (item.plan && item.plan.indexOf('4K') !== -1) tdPlan.style.fontWeight = 'bold';
+  tr.appendChild(tdPlan);
+
+  var tdBilling = document.createElement('td');
+  tdBilling.textContent = item.billing || '-';
+  tr.appendChild(tdBilling);
+
+  var tdCountry = document.createElement('td');
+  tdCountry.textContent = item.country || '-';
+  tr.appendChild(tdCountry);
+
+  $('chkTableBody').appendChild(tr);
+  updateSelectedCount();
+}
+
+$('stopChecker').onclick = function () {
+  if (chkJobId && chkSse) {
+    fetch('/api/checker/stop/' + chkJobId, { method: 'POST' });
+    $('stopChecker').disabled = true;
+    $('stopChecker').textContent = 'Menghentikan...';
+  }
+};
+
+$('startChecker').onclick = function () {
+  var text = $('taChecker').value;
+  if (!text.trim()) {
+    $('chkErr').textContent = 'Input kosong. Tempel cookie akun dulu.';
+    $('chkErr').classList.remove('hidden');
+    return;
+  }
+  var btn = $('startChecker');
+  btn.disabled = true;
+  btn.textContent = 'Memeriksa...';
+  $('chkErr').classList.add('hidden');
+  $('chkHint').classList.remove('hidden');
+  $('chkBarWrap').classList.remove('hidden');
+  $('chkSum').classList.remove('hidden');
+  $('chkResultsArea').classList.remove('hidden');
+  $('chkTableBody').textContent = '';
+  $('genSelectedResult').classList.add('hidden');
+  $('genSelectedLinks').textContent = '';
+  $('chkBarFill').style.width = '0%';
+  $('chkSum').textContent = 'Memulai checker...';
+  $('stopChecker').classList.add('hidden');
+  checkedItemsMap = {};
+  updateSelectedCount();
+
+  fetch('/api/checker/start', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ text: text })
+  }).then(function (r) { return r.json(); }).then(function (data) {
+    if (!data.ok) {
+      btn.disabled = false;
+      btn.textContent = '🔍 Check Active Cookies';
+      $('chkErr').textContent = 'Gagal: ' + data.error;
+      $('chkErr').classList.remove('hidden');
+      return;
+    }
+    chkJobId = data.job_id;
+    chkStartedAt = Date.now();
+    $('chkHint').textContent = 'Terdeteksi ' + data.total + ' akun. Memeriksa status membership Netflix...';
+    $('stopChecker').classList.remove('hidden');
+    $('stopChecker').disabled = false;
+    $('stopChecker').textContent = 'Stop Check';
+
+    if (chkSse) { chkSse.close(); }
+    chkSse = new EventSource('/api/checker/events/' + data.job_id);
+    chkSse.onmessage = function (e) {
+      var ev = JSON.parse(e.data);
+      if (ev.item) {
+        addCheckerRow(ev.item);
+      }
+      if (ev.total && ev.position) {
+        var pct = Math.round((ev.position / ev.total) * 100);
+        $('chkBarFill').style.width = pct + '%';
+        var elapsed = (Date.now() - chkStartedAt) / 1000;
+        var eta = (elapsed / ev.position) * (ev.total - ev.position);
+        if (ev.cancelled) {
+          $('chkSum').textContent = 'Dihentikan di ' + ev.position + ' / ' + ev.total;
+        } else {
+          $('chkSum').textContent = 'Proses check ' + ev.position + ' / ' + ev.total + ' \u00b7 sisa \u2248 ' + fmtEta(eta);
+        }
+      }
+      if (ev.finished) {
+        chkSse.close();
+        btn.disabled = false;
+        btn.textContent = '🔍 Check Active Cookies';
+        $('stopChecker').classList.add('hidden');
+        $('chkHint').textContent = ev.cancelled ? 'Check dihentikan pengguna.' : ('Selesai checking ' + ev.total + ' akun.');
+        var liveNum = ev.live_count || 0;
+        var deadNum = ev.dead_count || (ev.total - liveNum);
+        $('chkSum').textContent = 'Total: ' + ev.total + ' | 🟢 LIVE: ' + liveNum + ' | 🔴 DEAD: ' + deadNum;
+      }
+    };
+    chkSse.onerror = function () {
+      if (chkSse) { chkSse.close(); }
+      btn.disabled = false;
+      btn.textContent = '🔍 Check Active Cookies';
+      $('chkErr').textContent = 'Koneksi SSE terputus. Coba lagi.';
+      $('chkErr').classList.remove('hidden');
+    };
+  }).catch(function (e) {
+    btn.disabled = false;
+    btn.textContent = '🔍 Check Active Cookies';
+    $('chkErr').textContent = 'Request error: ' + e;
+    $('chkErr').classList.remove('hidden');
+  });
+};
+
+$('btnGenSelected').onclick = function () {
+  var selectedItems = [];
+  var checkboxes = document.querySelectorAll('.chk-item-cb');
+  checkboxes.forEach(function (cb) {
+    if (cb.checked && cb.dataset.id && checkedItemsMap[cb.dataset.id]) {
+      selectedItems.push(checkedItemsMap[cb.dataset.id]);
+    }
+  });
+
+  if (selectedItems.length === 0) {
+    alert('Pilih minimal 1 akun LIVE untuk di-generate NF Tokens.');
+    return;
+  }
+
+  var btn = $('btnGenSelected');
+  btn.disabled = true;
+  btn.textContent = 'Generating NF Tokens...';
+  $('genSelectedResult').classList.add('hidden');
+  $('genSelectedLinks').textContent = '';
+
+  fetch('/api/checker/generate-selected', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ items: selectedItems })
+  }).then(function (r) { return r.json(); }).then(function (data) {
+    btn.disabled = false;
+    btn.textContent = '🚀 Generate NF Tokens for Selected (' + selectedItems.length + ')';
+    if (!data.ok) {
+      alert('Gagal generate: ' + data.error);
+      return;
+    }
+    var container = $('genSelectedLinks');
+    container.textContent = '';
+    (data.results || []).forEach(function (res) {
+      if (res.ok) {
+        var cardBox = document.createElement('div');
+        cardBox.style.marginBottom = '20px';
+        cardBox.style.padding = '14px';
+        cardBox.style.background = 'rgba(0,0,0,0.3)';
+        cardBox.style.borderRadius = '12px';
+        cardBox.style.border = '1px solid var(--hair-strong)';
+        
+        var headTitle = document.createElement('div');
+        headTitle.style.fontWeight = 'bold';
+        headTitle.style.fontSize = '14px';
+        headTitle.style.marginBottom = '10px';
+        headTitle.style.color = 'var(--ink)';
+        headTitle.textContent = '👤 ' + res.label + ' (' + res.plan + ' | Billing: ' + res.billing + ')';
+        cardBox.appendChild(headTitle);
+
+        (res.urls || []).forEach(function (item) {
+          cardBox.appendChild(buildLinkRow(item.label, item.url, res.country, res.plan));
+        });
+        container.appendChild(cardBox);
+      } else {
+        var errDiv = document.createElement('div');
+        errDiv.className = 'err';
+        errDiv.textContent = res.label + ': Gagal - ' + res.error;
+        container.appendChild(errDiv);
+      }
+    });
+    $('genSelectedResult').classList.remove('hidden');
+    $('genSelectedResult').scrollIntoView({ behavior: 'smooth' });
+  }).catch(function (e) {
+    btn.disabled = false;
+    btn.textContent = '🚀 Generate NF Tokens for Selected (' + selectedItems.length + ')';
+    alert('Request error: ' + e);
   });
 };
 </script>
