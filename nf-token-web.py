@@ -769,12 +769,12 @@ PAGE = r"""<!DOCTYPE html>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 :root{
-  --primary:#e50914;--primary-active:#b80710;--primary-glow:rgba(229,9,20,0.35);--link:#6f7bff;
-  --canvas:#0a0a0c;--canvas-deep:#050507;
-  --card:rgba(20,20,24,0.75);--card-elev:rgba(30,30,36,0.85);--strong:rgba(42,42,50,0.9);
-  --hair:rgba(255,255,255,0.08);--hair-soft:rgba(255,255,255,0.04);--hair-strong:rgba(255,255,255,0.15);
-  --ink:#ffffff;--body:#a0a0ab;--muted:#70707c;--muted-soft:#50505a;
-  --ok:#2ecc71;--fail:#ff4757;--nf:#e50914;
+  --primary:#17171c;--primary-active:#000000;--primary-glow:rgba(23,23,28,0.2);--link:#1863dc;
+  --canvas:#ffffff;--canvas-deep:#eeece7;
+  --card:#ffffff;--card-elev:#eeece7;--strong:#e5e7eb;
+  --hair:#d9d9dd;--hair-soft:#f2f2f2;--hair-strong:#d9d9dd;
+  --ink:#212121;--body:#616161;--muted:#93939f;--muted-soft:#75758a;
+  --ok:#00875a;--fail:#b30000;--nf:#ff7759;
   --head:'Space Grotesk',ui-sans-serif,system-ui,sans-serif;
   --sans:'Inter',ui-sans-serif,system-ui,sans-serif;
   --mono:'JetBrains Mono','Fira Code',Consolas,monospace;
@@ -789,15 +789,17 @@ PAGE = r"""<!DOCTYPE html>
 .list::-webkit-scrollbar-thumb{border-color:var(--canvas-deep)}
 .list::-webkit-scrollbar-thumb:hover{border-color:var(--canvas-deep)}
 body{
-  background:var(--canvas);color:var(--body);
-  font-family:var(--sans);letter-spacing:-0.01em;
-  min-height:100vh;padding:40px 24px;
-  background-image:
-    radial-gradient(80% 50% at 50% 0%, rgba(229,9,20,0.12), transparent 70%),
-    radial-gradient(50% 30% at 80% 10%, rgba(0,7,205,0.1), transparent 60%);
-  background-repeat:no-repeat;background-attachment:fixed;
+  background:var(--canvas);color:var(--ink);
+  font-family:var(--sans);letter-spacing:0;
+  min-height:100vh;padding:0 0 60px 0;
 }
-.wrap{max-width:920px;margin:0 auto}
+.announcement-bar{
+  background:#000000;color:#ffffff;height:36px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:12px;letter-spacing:0.28px;gap:8px;
+}
+.announcement-bar a{color:#ffad9b;text-decoration:underline;font-weight:500}
+.wrap{max-width:1040px;margin:40px auto 0;padding:0 24px}
 .header{display:flex;align-items:center;gap:14px;margin-bottom:8px}
 .logo-icon{
   width:40px;height:40px;background:var(--primary);border-radius:12px;
@@ -824,11 +826,11 @@ h1 b{color:var(--primary);font-weight:700}
   box-shadow:0 8px 32px rgba(0,0,0,0.4);
 }
 textarea{
-  width:100%;min-height:200px;background:rgba(10,10,14,0.7);color:var(--ink);
-  border:1px solid var(--hair);border-radius:10px;padding:14px;
-  font-family:var(--mono);font-size:12.5px;line-height:1.6;resize:vertical;white-space:pre;
+  width:100%;min-height:200px;background:var(--canvas-deep);color:var(--ink);
+  border:1px solid var(--hairline);border-radius:8px;padding:16px;
+  font-family:var(--mono);font-size:13px;line-height:1.6;resize:vertical;white-space:pre;
 }
-textarea:focus{outline:none;border-color:var(--primary);box-shadow:0 0 0 3px var(--primary-glow)}
+textarea:focus{outline:none;background:var(--canvas);border-color:var(--link);box-shadow:0 0 0 3px rgba(24,99,220,0.12)}
 .optional-meta{display:flex;gap:12px;margin-top:14px;flex-wrap:wrap}
 .optional-meta .meta-field{flex:1;min-width:180px;display:flex;flex-direction:column;gap:6px}
 .optional-meta input{width:100%;background:rgba(10,10,14,0.7);color:var(--ink);border:1px solid var(--hair);border-radius:8px;padding:10px 12px;font-family:var(--sans);font-size:13px;transition:all .2s}
@@ -837,13 +839,13 @@ textarea:focus{outline:none;border-color:var(--primary);box-shadow:0 0 0 3px var
 .optional-meta .field-label{font-size:11px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.05em}
 .row{display:flex;gap:10px;flex-wrap:wrap;margin:16px 0 0} 
 button{
-  background:var(--primary);border:none;color:#fff;padding:11px 22px;border-radius:8px;
-  cursor:pointer;font-size:13.5px;font-weight:600;font-family:var(--sans);
-  transition:all .2s ease;box-shadow:0 4px 12px var(--primary-glow);
+  background:var(--primary);border:none;color:#fff;padding:12px 28px;border-radius:32px;
+  cursor:pointer;font-size:14px;font-weight:500;font-family:var(--sans);
+  transition:all .15s ease;
 }
-button:hover{background:var(--primary-active);transform:translateY(-1px)}
-button.ghost{background:var(--card-elev);border:1px solid var(--hair-strong);color:var(--ink);box-shadow:none}
-button.ghost:hover{background:var(--strong);transform:translateY(-1px)}
+button:hover{background:var(--cohere-black);transform:translateY(-1px)}
+button.ghost{background:transparent;border:1px solid var(--hairline);color:var(--ink);border-radius:30px;padding:10px 20px}
+button.ghost:hover{background:var(--canvas-deep);border-color:var(--slate)}
 button:disabled{opacity:.4;cursor:not-allowed;transform:none!important}
 .hint{color:var(--muted);font-size:13px;margin-top:10px}
 .hidden{display:none!important}
@@ -927,6 +929,11 @@ button:disabled{opacity:.4;cursor:not-allowed;transform:none!important}
 </style>
 </head>
 <body>
+<div class="announcement-bar">
+  <span>Cohere AI Infrastructure Protocol &mdash; Netflix NFToken Gateway</span>
+  <a href="https://github.com/Yuuashura" target="_blank" rel="noopener">Explore Docs &rarr;</a>
+</div>
+
 <div class="wrap">
   <div class="wm">
     <span class="who">Yuuashura</span>
