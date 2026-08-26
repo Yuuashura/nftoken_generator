@@ -1130,17 +1130,16 @@ function setupFileUpload(btnId, inputId, badgeId, taId, setFileCallback) {
   var input = $(inputId);
   var badge = $(badgeId);
   var ta = $(taId);
-  if (!btn || !input) return;
+  if (!btn || !input || !ta) return;
 
   btn.onclick = function () { input.click(); };
 
-  input.onchange = function (e) {
-    var file = e.target.files[0];
+  function handleFile(file) {
     if (!file) return;
-
-    if (file.name.toLowerCase().endswith('.zip')) {
+    var nameLower = file.name.toLowerCase();
+    if (nameLower.endsWith('.zip')) {
       setFileCallback(file);
-      badge.textContent = '📦 Selected ZIP: ' + file.name + ' (' + (file.size / 1024).toFixed(1) + ' KB)';
+      badge.textContent = '📦 Selected ZIP File: ' + file.name + ' (' + (file.size / 1024).toFixed(1) + ' KB)';
       badge.classList.remove('hidden');
     } else {
       var reader = new FileReader();
@@ -1152,7 +1151,37 @@ function setupFileUpload(btnId, inputId, badgeId, taId, setFileCallback) {
       };
       reader.readAsText(file);
     }
+  }
+
+  input.onchange = function (e) {
+    handleFile(e.target.files[0]);
   };
+
+  // Drag and drop file support
+  ['dragenter', 'dragover'].forEach(function (evtName) {
+    ta.addEventListener(evtName, function (e) {
+      e.preventDefault();
+      e.stopPropagation();
+      ta.style.borderColor = 'var(--primary)';
+      ta.style.boxShadow = '0 0 0 4px var(--primary-glow)';
+    }, false);
+  });
+
+  ['dragleave', 'drop'].forEach(function (evtName) {
+    ta.addEventListener(evtName, function (e) {
+      e.preventDefault();
+      e.stopPropagation();
+      ta.style.borderColor = '';
+      ta.style.boxShadow = '';
+    }, false);
+  });
+
+  ta.addEventListener('drop', function (e) {
+    var dt = e.dataTransfer;
+    if (dt && dt.files && dt.files.length > 0) {
+      handleFile(dt.files[0]);
+    }
+  }, false);
 }
 
 setupFileUpload('btnUploadBulk', 'fileBulkInput', 'fileBulkBadge', 'taBulk', function (file) { bulkSelectedFile = file; });
