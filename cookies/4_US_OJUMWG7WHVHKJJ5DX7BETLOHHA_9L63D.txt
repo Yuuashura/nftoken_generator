@@ -1,0 +1,15 @@
+# =========================================
+# Hazırlayan by DARK KENZ
+# https://guns.lol/realdarkkenz
+# İletişim Discord: realdarkkenz 
+# =========================================
+
+NFToken DETAILS :👇
+NFToken: BgiQvuvcAxLCAcbuRU/n/GX0mrc1V0VFNWFm5WfxF49bZlC/nRAX5oEzNH6pSAQ8vaW8bdkhR8r8hJGMhZ1BNLBEjCdlloBEnoE10o8ephW+YTkxHn3mBa9/hR58yebLgvEKHLW7koOqdIDI4hm+yog+YJcml2X9CA3ETrt/+FRNZCtYHvOU+GD7oQ7ybr1BJ8jmhaOULqhRE7/m+iJfVv3X31xJceJSNpvN1YBMA8RVz4GfZnrpyVMKpo19SkZ3QGffgi3lE3bCNkJQGAYiDgoM8caL0hlRSzUj5WbR
+🖥️ PC Login: https://netflix.com/?nftoken=BgiQvuvcAxLCAcbuRU/n/GX0mrc1V0VFNWFm5WfxF49bZlC/nRAX5oEzNH6pSAQ8vaW8bdkhR8r8hJGMhZ1BNLBEjCdlloBEnoE10o8ephW+YTkxHn3mBa9/hR58yebLgvEKHLW7koOqdIDI4hm+yog+YJcml2X9CA3ETrt/+FRNZCtYHvOU+GD7oQ7ybr1BJ8jmhaOULqhRE7/m+iJfVv3X31xJceJSNpvN1YBMA8RVz4GfZnrpyVMKpo19SkZ3QGffgi3lE3bCNkJQGAYiDgoM8caL0hlRSzUj5WbR
+📱 Phone Login: https://netflix.com/unsupported?nftoken=BgiQvuvcAxLCAcbuRU/n/GX0mrc1V0VFNWFm5WfxF49bZlC/nRAX5oEzNH6pSAQ8vaW8bdkhR8r8hJGMhZ1BNLBEjCdlloBEnoE10o8ephW+YTkxHn3mBa9/hR58yebLgvEKHLW7koOqdIDI4hm+yog+YJcml2X9CA3ETrt/+FRNZCtYHvOU+GD7oQ7ybr1BJ8jmhaOULqhRE7/m+iJfVv3X31xJceJSNpvN1YBMA8RVz4GfZnrpyVMKpo19SkZ3QGffgi3lE3bCNkJQGAYiDgoM8caL0hlRSzUj5WbR
+
+
+.netflix.com	TRUE	/	TRUE	0	NetflixId	v=3&ct=BgjHlOvcAxKGAxiLIQnpYc4g4x5M1CJTZ4PS3A2L8naIe9IThdUUJsXcZpbqMKb5316xk49szFdf3IOxtMoEQB8q7nBS07VH2MuWMrSsQQBKP2bkfr1Z7Lmg8fbuLdK9Pu3KNKAzNkRebPDdcUH8eCwoiJZ8bx-Uw_NXFeVCipzTnOUKi9cbhHSXVOM5SfCpeqS3MBCOjVd9cXYChWp6Uo4r37a-GS34Mo-t9vc3VBnKPafBriXTvxWP9CL6jmZorJn2mx34pBb3Q6storTZXNbqGMtThxefmofNJHJvtNqZbzW7ucOTiq3Kfsf0iKtr5iXHlSslbTGWkFdaBuaJmLIAH_Dr2DupFFEjvyaF-ese603i0u7GX2sFKMFAYuTEYQtta5J86b1w775iXwAjghxjjTEGJOeD4fA6-kl6jepVqy1xeXSo4F5y8DFDhWYV8ZVaeeNEyuQuw7OQshOD6K6Qo-A4ezfkCuyA3h-Xb0DTZoCQKHHcNwMa-GYaV9_MpR39NdltKTFNoLsbU7WpZBgGIg4KDLApDzd2e2gMmAWljg..&pg=OJUMWG7WHVHKJJ5DX7BETLOHHA&ch=AQEAEAABABT92KFPUEwEh__goNXpRe_0Ox46MhFxndY.
+.netflix.com	TRUE	/	TRUE	0	SecureNetflixId	v=3&mac=AQEAEQABABQg-mOGr9Qtw1R5Pck8TLP_XUuAljJiOI4.&dt=1773425635043
+.netflix.com	TRUE	/	TRUE	0	nfvdid	BQFmAAEBEJOC8zkm13fJs9pVfnnpZsNg2a-FCYjprLFlAhhHPB3SGcTNtrNwiGqthSvihh9A6SQ6NnoFCdtafwiVChUwzbxl3LIBpkZLQdJqfBtUoS-RdY4DXFV2HoGW0V3wMRMPjT5cfovS1lsNc723vMIA7N5C

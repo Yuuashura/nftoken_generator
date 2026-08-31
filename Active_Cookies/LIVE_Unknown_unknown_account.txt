@@ -1,0 +1,53 @@
+# Netflix Account: unknown_account
+# Plan: الخطة المميزة | Next Billing: 
+# Checked Date: 2026-08-31 16:45:09
+# ========================================
+
+# Netscape HTTP Cookie File
+# https://curl.haxx.se/rfc/cookie_spec.html
+# This is a generated file!  Do not edit.
+
+.netflix.com	TRUE	/	TRUE	1893456000	NetflixId	v%3D3%26ct%3DBgjHlOvcAxKdA7UAqUAa4lyURXeGCQUoGq_285d8Xv0u83e-XC-zrYGh2BIQKzsL4S3NmuZI_uwMoWlUYGuhcsrTahYSYXWY9ZxVyDSvMVs5Dla1eqZZkYjGqsGs0E0j0VvLFbjA6v4xERT1S9q2pNA9LXf9J9U4ic-xyk2ainEtVzsTAxN1jHHGBrtyfV6WNbWGOQDBKos-UN--481HkOzdudkf0jx7NMAOqb1jChseNC-0jluEhayYxx1GunfiPTKngzkscgGgJLTtTu92eYblI585p3fygGKIZ2xz4qrqf1kGzftSsFt1xRGjhImxfU10P-AV8GKD9JQKKVzpC75Y8qjdO6SrVtBqgEpNcM0FNBjIiQ8MRHCRdiL-7ex9wDw6_2k44qH5lNSApUyO2BFkEZHtW5_S9_N70EDNJOZskbjNP7FzdBeZKVi_YHoYqpXo98bcck-dc3V9ado2-w29vKXS7lM0Op_AVeT9zCzh6QZelw9JdrcwwaxkGZXlyv4BqunlYTuwzfC0sqWPbmI9afGLCr4BAmlrkTCDSjVpYbzpVKNLGAYiDgoMSuxY8Lifgbkz--zT%26pg%3D6HHAWZNHRJEPDJBE3C4ALP7H2A%26ch%3DAQEAEAABABRPkqSfpazkH1goKVEC2pXU8qqs9NxSl3g
+.netflix.com	TRUE	/	TRUE	1893456000	SecureNetflixId	v%3D3%26mac%3DAQEAEQABABSBFuJcMVOAt4fbHd4ONidex8S93YpRrp8.%26dt%3D1784365922055
+.netflix.com	TRUE	/	FALSE	1893456000	nfvdid	BQFmAAEBEF5s-SYeRZObKuq6DxoUBB5gYSeUmu83VwYVMQbyXHN3SmCIvS92pDjGWw4RO88qsM9-USCyqkg0azOk0_VA9u4AoDeR2QapOPH_GF8Xm_99llqN7dQYpVNTH1qY7lCmAj0K052SAywYMc_P06yo1YJP
+.netflix.com	TRUE	/	FALSE	1893456000	OptanonConsent	isGpcEnabled=0&datestamp=Sat+Jul+18+2026+19%3A00%3A28+GMT%2B0200+(Central+Africa+Time)&version=202604.2.0&browserGpcFlag=0&isDntEnabled=0&isIABGlobal=false&hosts=&consentId=6201babd-e22c-4ecc-a3ba-7344a024195e&interactionCount=0&isAnonUser=1&prevHadToken=0&landingPath=NotLandingPage&groups=C0001%3A1%2CC0002%3A1%2CC0003%3A1%2CC0004%3A1&AwaitingReconsent=false
+
+# JSON Format (Cookie-Editor):
+[
+    {
+        "domain": ".netflix.com",
+        "name": "NetflixId",
+        "path": "/",
+        "secure": true,
+        "httpOnly": true,
+        "sameSite": "unspecified",
+        "value": "v%3D3%26ct%3DBgjHlOvcAxKdA7UAqUAa4lyURXeGCQUoGq_285d8Xv0u83e-XC-zrYGh2BIQKzsL4S3NmuZI_uwMoWlUYGuhcsrTahYSYXWY9ZxVyDSvMVs5Dla1eqZZkYjGqsGs0E0j0VvLFbjA6v4xERT1S9q2pNA9LXf9J9U4ic-xyk2ainEtVzsTAxN1jHHGBrtyfV6WNbWGOQDBKos-UN--481HkOzdudkf0jx7NMAOqb1jChseNC-0jluEhayYxx1GunfiPTKngzkscgGgJLTtTu92eYblI585p3fygGKIZ2xz4qrqf1kGzftSsFt1xRGjhImxfU10P-AV8GKD9JQKKVzpC75Y8qjdO6SrVtBqgEpNcM0FNBjIiQ8MRHCRdiL-7ex9wDw6_2k44qH5lNSApUyO2BFkEZHtW5_S9_N70EDNJOZskbjNP7FzdBeZKVi_YHoYqpXo98bcck-dc3V9ado2-w29vKXS7lM0Op_AVeT9zCzh6QZelw9JdrcwwaxkGZXlyv4BqunlYTuwzfC0sqWPbmI9afGLCr4BAmlrkTCDSjVpYbzpVKNLGAYiDgoMSuxY8Lifgbkz--zT%26pg%3D6HHAWZNHRJEPDJBE3C4ALP7H2A%26ch%3DAQEAEAABABRPkqSfpazkH1goKVEC2pXU8qqs9NxSl3g"
+    },
+    {
+        "domain": ".netflix.com",
+        "name": "SecureNetflixId",
+        "path": "/",
+        "secure": true,
+        "httpOnly": true,
+        "sameSite": "unspecified",
+        "value": "v%3D3%26mac%3DAQEAEQABABSBFuJcMVOAt4fbHd4ONidex8S93YpRrp8.%26dt%3D1784365922055"
+    },
+    {
+        "domain": ".netflix.com",
+        "name": "nfvdid",
+        "path": "/",
+        "secure": true,
+        "httpOnly": false,
+        "sameSite": "unspecified",
+        "value": "BQFmAAEBEF5s-SYeRZObKuq6DxoUBB5gYSeUmu83VwYVMQbyXHN3SmCIvS92pDjGWw4RO88qsM9-USCyqkg0azOk0_VA9u4AoDeR2QapOPH_GF8Xm_99llqN7dQYpVNTH1qY7lCmAj0K052SAywYMc_P06yo1YJP"
+    },
+    {
+        "domain": ".netflix.com",
+        "name": "OptanonConsent",
+        "path": "/",
+        "secure": true,
+        "httpOnly": false,
+        "sameSite": "unspecified",
+        "value": "isGpcEnabled=0&datestamp=Sat+Jul+18+2026+19%3A00%3A28+GMT%2B0200+(Central+Africa+Time)&version=202604.2.0&browserGpcFlag=0&isDntEnabled=0&isIABGlobal=false&hosts=&consentId=6201babd-e22c-4ecc-a3ba-7344a024195e&interactionCount=0&isAnonUser=1&prevHadToken=0&landingPath=NotLandingPage&groups=C0001%3A1%2CC0002%3A1%2CC0003%3A1%2CC0004%3A1&AwaitingReconsent=false"
+    }
+]

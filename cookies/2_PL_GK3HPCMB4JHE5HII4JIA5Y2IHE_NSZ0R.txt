@@ -1,0 +1,18 @@
+# =========================================
+# Hazırlayan by DARK KENZ
+# https://guns.lol/realdarkkenz
+# İletişim Discord: realdarkkenz 
+# =========================================
+
+NFToken DETAILS :👇
+NFToken: BgiQvuvcAxLCAdz2piQVsO1iKXh/E0l9HRA4AVV1ZT5eWwnXcvMR73FUHVloNjFT5Q75eNfUieZ3YEBIQoc8bd4IAM+4MBCDOzHbCDjHI1WnIA6LCZjPpa287qfWWFM44BHsU3GoQ6oms39yAwPMqLyr/l4Hp7zfFGL1GwPyIqOVvqAIeppQH4l5wQR3qebB2FKXOAHeDd4liTV0cAFWhugBXhagCG8Wd84srXA66PUWMSL2vSkYmexBjh+/hYW1o5wMSliIlU+WSQ8ZGAYiDgoMUQGHfKxD3/5Em0DV
+🖥️ PC Login: https://netflix.com/?nftoken=BgiQvuvcAxLCAdz2piQVsO1iKXh/E0l9HRA4AVV1ZT5eWwnXcvMR73FUHVloNjFT5Q75eNfUieZ3YEBIQoc8bd4IAM+4MBCDOzHbCDjHI1WnIA6LCZjPpa287qfWWFM44BHsU3GoQ6oms39yAwPMqLyr/l4Hp7zfFGL1GwPyIqOVvqAIeppQH4l5wQR3qebB2FKXOAHeDd4liTV0cAFWhugBXhagCG8Wd84srXA66PUWMSL2vSkYmexBjh+/hYW1o5wMSliIlU+WSQ8ZGAYiDgoMUQGHfKxD3/5Em0DV
+📱 Phone Login: https://netflix.com/unsupported?nftoken=BgiQvuvcAxLCAdz2piQVsO1iKXh/E0l9HRA4AVV1ZT5eWwnXcvMR73FUHVloNjFT5Q75eNfUieZ3YEBIQoc8bd4IAM+4MBCDOzHbCDjHI1WnIA6LCZjPpa287qfWWFM44BHsU3GoQ6oms39yAwPMqLyr/l4Hp7zfFGL1GwPyIqOVvqAIeppQH4l5wQR3qebB2FKXOAHeDd4liTV0cAFWhugBXhagCG8Wd84srXA66PUWMSL2vSkYmexBjh+/hYW1o5wMSliIlU+WSQ8ZGAYiDgoMUQGHfKxD3/5Em0DV
+
+
+.netflix.com	TRUE	/	FALSE	1790616505	NetflixId	v%3D3%26ct%3DBgjHlOvcAxL8AjW2tScbROdziK1NXUbK1rM9OiDPB-sXQfXhezaCM-fUenKdnqvSBmazYXFmKpRoi-F_984DFAVzrly7vawVfaE3RWowPu-xXPaq-wgu44ntiYeGo8R0qZqchDztadOGZLLutM_CG6pHCDty-jsmlgMxznfSFqwGfeLGKHK8N122XbKsfkzo8yw8jnEvnzvzYdnLSzxosmGcAR4XMb8BfldKD_r7KRbroV4VxUlqDCO4RfT8wkI0mEp2zeLdOodcviUHXD3TComARehCvhMrPbFKmNgi72sQTnrKnB3sVGrlL3OxtfArMsmwW7bfFtETJaII5ueqjpWT525OEZGraQtoDZ_9lIafgnMWBA9JJAAQotm2JxpAHUgITZREqavRiXbp_hYh3vuQEPmA_BKcpc4LvAhKAAHljrFkQDmYD8Fyg0T3iFpRcV9mDqjBy0IcmqeShf5it_GncKjHXigGEyB0sKoJoS0qut4EMcfl9iIGEG9--7yLClxUWVFZGAYiDgoMc07xk_gMSEOx9HMB%26ch%3DAQEAEAABABRKE-9sYj-_1BvHCJyv2MBIMsD6M1iFXGc.
+.netflix.com	TRUE	/	FALSE	1790616505	OptanonAlertBoxClosed	2025-01-30T16:35:39.418Z
+.netflix.com	TRUE	/	FALSE	1790616505	OptanonConsent	isGpcEnabled=0&datestamp=Thu+Jan+30+2025+17%3A35%3A39+GMT%2B0100+(Central+European+Standard+Time)&version=202411.1.0&browserGpcFlag=0&isIABGlobal=false&hosts=&consentId=55c11402-42cc-4952-a865-b8a3f179ed80&interactionCount=3&isAnonUser=1&landingPath=NotLandingPage&groups=C0001%3A1%2CC0002%3A1%2CC0003%3A1%2CC0004%3A1&AwaitingReconsent=false&intType=1
+.netflix.com	TRUE	/	FALSE	1790616505	SecureNetflixId	v%3D3%26mac%3DAQEAEQABABSzwhzSmzzAblR4tbwMTxhNX72pJ-YXcwk.%26dt%3D1738254937675
+.netflix.com	TRUE	/	FALSE	1790616505	dsca	customer
+.netflix.com	TRUE	/	FALSE	1790616505	nfvdid	BQFmAAEBEMlyIYXw8DLHvmH6eKIoL4xgqQ718gAfYRrIS7yurAhDBuCF9tUOpHUmwj8xCVLJTKve9hFaQww0eB7FTUtB-RdORO-tqV36yrDR7v-4R8COoaiLauO2rlKewUrl2lpXgi3HfdOl1BIIbcNQ0LaJFuz4

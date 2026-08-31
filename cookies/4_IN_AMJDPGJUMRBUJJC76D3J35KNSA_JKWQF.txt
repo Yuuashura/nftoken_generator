@@ -1,0 +1,15 @@
+# =========================================
+# Hazırlayan by DARK KENZ
+# https://guns.lol/realdarkkenz
+# İletişim Discord: realdarkkenz 
+# =========================================
+
+NFToken DETAILS :👇
+NFToken: BgiQvuvcAxLDAaOn315F7DSRvDzT7V2LTPaZrC2xN/Uo21jDHiPywnVsuSmX5Kg6O7uFbeioxwjuAXKu6s4E4l+ELYh3sTbHaFof60WwVbmaLeGhiA//wwBxzkXdwpLOP8W7Ei0dPYdNCfRdL23xLjXNmyFttpSIaEkEpilVZ4NjAlninexfzs92QFFTmg3ScDZxqxX+/Vy37TnDsT61llBKEtQ5xOthWt7+zmrdYylUrN74JbJ0xfO4ccYplXDr7OiqSiqTDUGYlfMtNBgGIg4KDNl0/jGh37D/N6tBNg==
+🖥️ PC Login: https://netflix.com/?nftoken=BgiQvuvcAxLDAaOn315F7DSRvDzT7V2LTPaZrC2xN/Uo21jDHiPywnVsuSmX5Kg6O7uFbeioxwjuAXKu6s4E4l+ELYh3sTbHaFof60WwVbmaLeGhiA//wwBxzkXdwpLOP8W7Ei0dPYdNCfRdL23xLjXNmyFttpSIaEkEpilVZ4NjAlninexfzs92QFFTmg3ScDZxqxX+/Vy37TnDsT61llBKEtQ5xOthWt7+zmrdYylUrN74JbJ0xfO4ccYplXDr7OiqSiqTDUGYlfMtNBgGIg4KDNl0/jGh37D/N6tBNg==
+📱 Phone Login: https://netflix.com/unsupported?nftoken=BgiQvuvcAxLDAaOn315F7DSRvDzT7V2LTPaZrC2xN/Uo21jDHiPywnVsuSmX5Kg6O7uFbeioxwjuAXKu6s4E4l+ELYh3sTbHaFof60WwVbmaLeGhiA//wwBxzkXdwpLOP8W7Ei0dPYdNCfRdL23xLjXNmyFttpSIaEkEpilVZ4NjAlninexfzs92QFFTmg3ScDZxqxX+/Vy37TnDsT61llBKEtQ5xOthWt7+zmrdYylUrN74JbJ0xfO4ccYplXDr7OiqSiqTDUGYlfMtNBgGIg4KDNl0/jGh37D/N6tBNg==
+
+
+.netflix.com	TRUE	/	TRUE	0	NetflixId	ct=BgjHlOvcAxKhA404PuvEW40lrgqZbknxI5WQIYOsoBubiDq5msSj5oCAclFMJjGkurjDhqABi47Wg20Rq9FekZ_r2JWFuqnQ0wZE_odT6aEecl_Yb_iPq-jc9PhPWQ2U-2Gkc8nYGkcURZ8tiYyeeDfRBqm26F5C5FdAACpAvnijvZ-aTfkeeRnw9K8UWqoho7bWzHBAWc4Xc9iZofamgZwiF4UZyRQP9lFHf540S6uSNSW_KQDdmx9GuDkhWk5odpLS45vtaxBEgBv3m07fffGW_Bguk0YoxAWEZ_4IcazoMQyEafgBM7jj6STiz3RRzI60nML5CSI_h6Ttsrh1Q3D--zHHs7NGEBeSZ4zRbMgxqb3iLj833MWt7xId_smTfPzmwhqAUKVHLcW9gNHFTl2rEN0zk7nJ57pRmtp1TnyMy_JEJ7_YA0ordEKH4mFdMcmNF8Spqav75PxzhA_AR8bjxaDP1peVLDtUP8T3-C8s8arKQKeD2FZTnYbY9S2NcXUDW6X8FniUn08rM1ZwaaMBZiZeV_G3AapsJ_3N79Vz07BkvISiy8-jIBgGIg4KDKwZWFuGXqJP_notVw..&ch=AQEAEAABABRCSXc0dQxyBOyQ2pSQkmzFYl6505oHDoo.&v=3&pg=AMJDPGJUMRBUJJC76D3J35KNSA
+.netflix.com	TRUE	/	TRUE	0	SecureNetflixId	v=3&mac=AQEAEQABABQd2tTBTNHndxzFCpFKlGAcpsmcGolkNYc.&dt=1754057398521
+.netflix.com	TRUE	/	TRUE	0	OptanonConsent	isGpcEnabled=0&datestamp=Fri+Aug+01+2025+19:40:02+GMT+0530+(India+Standard+Time)&version=202506.1.0&browserGpcFlag=0&isIABGlobal=false&hosts=&consentId=82b23b59-28f1-4ead-8574-cb873980c0a1&interactionCount=1&isAnonUser=1&landingPath=NotLandingPage&groups=C0001:1,C0002:1,C0003:1,C0004:1&AwaitingReconsent=false

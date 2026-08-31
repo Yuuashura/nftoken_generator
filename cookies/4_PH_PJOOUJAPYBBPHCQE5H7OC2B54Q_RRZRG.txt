@@ -1,0 +1,18 @@
+# =========================================
+# Hazırlayan by DARK KENZ
+# https://guns.lol/realdarkkenz
+# İletişim Discord: realdarkkenz 
+# =========================================
+
+NFToken DETAILS :👇
+NFToken: BgiQvuvcAxLCAVNAV94dxnZiXXgE/ge8kF0PPcGBw4NB2FK5KAIy1IAuiFVH4eFXFj6bD6Ih9/O9oGjF5Iah0e6Qc+cOCpQBHI4IQpckzGtXfOH4aVNn52GgBWP6+h2b5edDTM7JgerE2OkDqdX7g0UOEt7hK4mjNS88XuEOaoWuzmU5elwP0fpPlkYwzJkZfY4rqv+QUh87CSA9MX7R9KnZS+NOvm3fRhEEgHqMOZB8zqVFHo1HYJBiOsHPmXjnINb3KriTVmxkOeQlGAYiDgoMRqkMtT2QiVbOSpht
+🖥️ PC Login: https://netflix.com/?nftoken=BgiQvuvcAxLCAVNAV94dxnZiXXgE/ge8kF0PPcGBw4NB2FK5KAIy1IAuiFVH4eFXFj6bD6Ih9/O9oGjF5Iah0e6Qc+cOCpQBHI4IQpckzGtXfOH4aVNn52GgBWP6+h2b5edDTM7JgerE2OkDqdX7g0UOEt7hK4mjNS88XuEOaoWuzmU5elwP0fpPlkYwzJkZfY4rqv+QUh87CSA9MX7R9KnZS+NOvm3fRhEEgHqMOZB8zqVFHo1HYJBiOsHPmXjnINb3KriTVmxkOeQlGAYiDgoMRqkMtT2QiVbOSpht
+📱 Phone Login: https://netflix.com/unsupported?nftoken=BgiQvuvcAxLCAVNAV94dxnZiXXgE/ge8kF0PPcGBw4NB2FK5KAIy1IAuiFVH4eFXFj6bD6Ih9/O9oGjF5Iah0e6Qc+cOCpQBHI4IQpckzGtXfOH4aVNn52GgBWP6+h2b5edDTM7JgerE2OkDqdX7g0UOEt7hK4mjNS88XuEOaoWuzmU5elwP0fpPlkYwzJkZfY4rqv+QUh87CSA9MX7R9KnZS+NOvm3fRhEEgHqMOZB8zqVFHo1HYJBiOsHPmXjnINb3KriTVmxkOeQlGAYiDgoMRqkMtT2QiVbOSpht
+
+
+.netflix.com	TRUE	/	FALSE	1790451451	nfvdid	BQFmAAEBEL7XeTevTQy0w3RyWr9bAYJgPy_nt58wmubdhgk_GOezv2qXeJgV2TqW_mhXPtRRCT8JGwau74ixAfnqpnoBKzbIazdVcBbDLbb8496RRBQ608U-g-bco2reHQOksp1APcwJQvXav-A2_EYH2TYwGiL7
+.netflix.com	TRUE	/	FALSE	1799058088	OptanonConsent	isGpcEnabled=0&datestamp=Sun+Jan+04+2026+18%3A21%3A28+GMT%2B0800+(Singapore+Standard+Time)&version=202510.2.0&browserGpcFlag=0&isIABGlobal=false&hosts=&consentId=c249f1da-8c23-426f-be5b-27f3f6b98500&interactionCount=1&isAnonUser=1&landingPath=NotLandingPage&groups=C0001%3A1%2CC0002%3A1%2CC0003%3A1%2CC0004%3A1&AwaitingReconsent=false
+.netflix.com	TRUE	/	TRUE	1799058088	SecureNetflixId	v%3D3%26mac%3DAQEAEQABABSQrYTm_r_HVL57kbQrbu82aUO2STWzhzk.%26dt%3D1767522087861
+.netflix.com	TRUE	/	TRUE	1790451451	gsid	0dd24355-a62c-4da0-8834-ea9f8f6402d1
+.netflix.com	TRUE	/	TRUE	1799058088	NetflixId	ct%3DBgjHlOvcAxKdA7Af5qe6MO-pRPxKAOy4VJviKegvMAzkaCbTXrwopek0RexljpTnQk9uf1pL766rvSuV-DVatWr0s2ivFfOljZ4J6njDujenYEvasTKcXJNVgSK5QWVswNvhwSTlINqp3CDSM37qvo6-3rHrKS41OhX-6w5sv6E6nsbe5CaHVbZfGD8FTUJ5S1uj5tY6YswnG19GNa2146jS1utIhEeZWGlRxj3j971zGiMYbfKk0d7_33bBkVCrz2UpVdmWHiKNzD5yn0fL9aCoTAz8jtut6-bIsUY-V1ZNComubdLAcWpM9jqJ5Wb2m9lpTKAmO54r3NcW0IP1yYh2LrKu3utjNTO_XqHrVOcaepVRwpAqylisW9kX0QdZTu7JLhlKpHYzi57twSu8A6I1vwuS6gUuL7Ky-pZA6ZZg7nZC11bJNlBobkBmRkM_caj-8QTz376TsV3aYrrnskzcNu6QGLaq1Hi5U10aNjmsWW03rrGIdQRGWe9emSRV1-I3HDgIWfvzDhTOyXwU6tzw9_AJF9B2Dnnl5EAgx7k06f70l5CMGAYiDgoM4_6eEZUKPxMsNORl%26ch%3DAQEAEAABABTDLujzB8ilER9Bb_y0jj8eNT8ksO7X33g.%26v%3D3%26pg%3DPJOOUJAPYBBPHCQE5H7OC2B54Q
+.netflix.com	TRUE	/	FALSE	1790451451	profilesNewSession	0

@@ -1,0 +1,16 @@
+# =========================================
+# Hazırlayan by DARK KENZ
+# https://guns.lol/realdarkkenz
+# İletişim Discord: realdarkkenz 
+# =========================================
+
+NFToken DETAILS :👇
+NFToken: BgiQvuvcAxLCAY2er5o329SWsqpBFY2wUhlswMgN9x3BWexaNNGq4Pdt1myGhreaYfmvqmYEuEkrqdeAEmuVthb9o+t6H8bPehG0rBdYPm5EhCk4Ap4mxMbCJQXeG39zfMuU2sunpEtpXWUvOnZRyZQUEUgDF0FdoSiKjLua2LO0RS+g3++DYWjEBTZGF+Hh4T0zO13inZuHqKEXMN+O09PlxeOaFOFCi3JSPy/34mVi92Fs0f2W45L+6NaYZUjs9q7axIwMx7n0YcXXGAYiDgoMMkit8bDrI4dD4bAh
+🖥️ PC Login: https://netflix.com/?nftoken=BgiQvuvcAxLCAY2er5o329SWsqpBFY2wUhlswMgN9x3BWexaNNGq4Pdt1myGhreaYfmvqmYEuEkrqdeAEmuVthb9o+t6H8bPehG0rBdYPm5EhCk4Ap4mxMbCJQXeG39zfMuU2sunpEtpXWUvOnZRyZQUEUgDF0FdoSiKjLua2LO0RS+g3++DYWjEBTZGF+Hh4T0zO13inZuHqKEXMN+O09PlxeOaFOFCi3JSPy/34mVi92Fs0f2W45L+6NaYZUjs9q7axIwMx7n0YcXXGAYiDgoMMkit8bDrI4dD4bAh
+📱 Phone Login: https://netflix.com/unsupported?nftoken=BgiQvuvcAxLCAY2er5o329SWsqpBFY2wUhlswMgN9x3BWexaNNGq4Pdt1myGhreaYfmvqmYEuEkrqdeAEmuVthb9o+t6H8bPehG0rBdYPm5EhCk4Ap4mxMbCJQXeG39zfMuU2sunpEtpXWUvOnZRyZQUEUgDF0FdoSiKjLua2LO0RS+g3++DYWjEBTZGF+Hh4T0zO13inZuHqKEXMN+O09PlxeOaFOFCi3JSPy/34mVi92Fs0f2W45L+6NaYZUjs9q7axIwMx7n0YcXXGAYiDgoMMkit8bDrI4dD4bAh
+
+
+.netflix.com	TRUE	/	TRUE	0	nfvdid	BQFmAAEBEEhl9Pc1VG6wbcIg986dcgtgoSOy-Mjbv1OvoPEg9FlaNmumt7LzmaHSxFDU4psiBJLNMAkAx0r9QeZupb924D2CKzKFWPgco2sWivlIjOiRnIIC072RnEN2fIQ7Spaym6p-UG7EnWw8635l6gocrCFF
+.netflix.com	TRUE	/	TRUE	0	OptanonConsent	isGpcEnabled=0&datestamp=Sat+Jun+20+2026+10:29:53+GMT+0200+(South+Africa+Standard+Time)&version=202604.2.0&browserGpcFlag=0&isDntEnabled=0&isIABGlobal=false&hosts=&consentId=63357968-ece0-4872-b91c-75452b873643&interactionCount=1&isAnonUser=1&prevHadToken=0&landingPath=NotLandingPage&groups=C0001:1,C0002:1,C0003:1,C0004:1&crTime=1780084549604&AwaitingReconsent=false
+.netflix.com	TRUE	/	TRUE	0	NetflixId	ct=BgjHlOvcAxLDA8ETaeCi6CDZ2K6xxQ7-3Losj4jZPOcHe2vFVnjIB1Qo6XYqXk1QtleQDn8L7ibjuYo1Poenv7v8FIoAalqv7obUl15qaZZwrpDTRfNaLCB5mFqMVPrkLa3D2LKzDngHY3cKS4LcBTtgMSV5lWVxkeEW5fKdRod_mXIlE2XU5Rmzr-DvMPoklWfYg7AbaGvrO8IkmXP0JoYpXZqmDvJludA2UYJwFAt_vZUnHWkFFp9ejybJb1s0O9_HBByWX6pGYdjPx08Q_WyTcHET0wtxwfHDVsMmjGZPQP1vyVrrgR46cfUPeSnZpMJ8GUP5Gt7rvMMrHiPr0LGK9AUWjcrHJ_a-E3rOcHx4STXa1iWXNT6jgjYEscOsaXrZ9Wj32Bc13NxfU0IV3q3qlPE2v0i9EymZYUevCzs4R7z-C2_ia3l3mfRNJ3wrbDmHA7BPYh6VGC2BZGT44SHpPK0UFVEOGQY_CqQt25eLeXyXoMXqA-Lv4JfWxdQCA01SmMh3fvCxkaBCg6XUrJISLQKb8pRGX4x4I-g311bWWfQf_SfO-qtaGzVI9OTZ9yRX9VZV502YMgxnebPB52dPknajSiB6VyuYDfsYBiIOCgxpLrzCNqY6K2lpzkQ.&ch=AQEAEAABABRm9As9TaI3xKDEUGv59P3fJTTbAuhYdCE.&v=3&pg=I22GATEWKZE2TCRNZLRANU22FQ
+.netflix.com	TRUE	/	TRUE	0	SecureNetflixId	v=3&mac=AQEAEQABABQtWmYZZQVHKr6sMhkJn1KEDDT8nTrOHrQ.&dt=1782058599307

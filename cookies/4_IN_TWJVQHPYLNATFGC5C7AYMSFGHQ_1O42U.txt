@@ -1,0 +1,18 @@
+# =========================================
+# Hazırlayan by DARK KENZ
+# https://guns.lol/realdarkkenz
+# İletişim Discord: realdarkkenz 
+# =========================================
+
+NFToken DETAILS :👇
+NFToken: BgiQvuvcAxLCAYt7PeF0kLQxhnPToUmIazrjH95jlzKyY5S3nCTWh+BXGwtiMBhDINRQiUs/sQkw1IQFS2qnQbNy9/IkBgtKHoj0dY75NFqGCnEuodI2q2wjdP/wOre+fbpQRsrTJLeB3hMU4QzEw4C966aalLgU7VI8dhwJ0bYTR2nx5FRluAINHjNRucDlDHHwWvNmDeYnvHEm8vEzc7zF1xftEaEDtmS64j+5izBeegpdeN1kGv60lHZ2rnbtvATSK0xeYA+f3zvPGAYiDgoMruURDvjmcbHLy1JY
+🖥️ PC Login: https://netflix.com/?nftoken=BgiQvuvcAxLCAYt7PeF0kLQxhnPToUmIazrjH95jlzKyY5S3nCTWh+BXGwtiMBhDINRQiUs/sQkw1IQFS2qnQbNy9/IkBgtKHoj0dY75NFqGCnEuodI2q2wjdP/wOre+fbpQRsrTJLeB3hMU4QzEw4C966aalLgU7VI8dhwJ0bYTR2nx5FRluAINHjNRucDlDHHwWvNmDeYnvHEm8vEzc7zF1xftEaEDtmS64j+5izBeegpdeN1kGv60lHZ2rnbtvATSK0xeYA+f3zvPGAYiDgoMruURDvjmcbHLy1JY
+📱 Phone Login: https://netflix.com/unsupported?nftoken=BgiQvuvcAxLCAYt7PeF0kLQxhnPToUmIazrjH95jlzKyY5S3nCTWh+BXGwtiMBhDINRQiUs/sQkw1IQFS2qnQbNy9/IkBgtKHoj0dY75NFqGCnEuodI2q2wjdP/wOre+fbpQRsrTJLeB3hMU4QzEw4C966aalLgU7VI8dhwJ0bYTR2nx5FRluAINHjNRucDlDHHwWvNmDeYnvHEm8vEzc7zF1xftEaEDtmS64j+5izBeegpdeN1kGv60lHZ2rnbtvATSK0xeYA+f3zvPGAYiDgoMruURDvjmcbHLy1JY
+
+
+.netflix.com	TRUE	/	TRUE	1804579294	NetflixId	v%3D3%26ct%3DBgjHlOvcAxKSA_fFHw5UFdZfXarfLYiz8hrbMtTUalRH67yut6GSmL5Fu9NAR5HG9b_zXUenn8tZEB8lw_EDSdAHsqysGkiigfJ3516HP_1fSWxdBif3hkEaSo2u5usPf0KFRs8M9OuoER9w7uEdJZXX5Un4xFmutzgTfJs0ChCIHVmwh60nrH4JvE8fXdE55JcOw2HdPk2bxe4UpPAOA2Lut65VrfolrqhREtLQJOAyTC0IBA-G1cMi47teqLxj1PBQQcQjZTNdFpDRZcK-IFQPGRNojDqBkojCaxXF7G54s7AAWV24UBVREkEThChSxeKoRp0kmZ3VLaxRldL_PoaYFOcB69ACClBoxHY1DEqr7NwO0n8yHbZq8KDuXWee-VWlLw8P3-AFhtmVbsC-uieyaGzokY3_1EuAY1Qw1EhIf1sbavCKo5RJYVx47ZOW6Hdh2are8nj43veo5k7zc2OLoUT1_LHTLLxX5JWpjpgD_jN0GwOY0sF7vlMeviWl2h90CbIWFUiJ-T8iw-3MHN76eJbNZbroBnUXAxgGIg4KDBx4pcCHUJFpUq_Ydw..%26pg%3DTWJVQHPYLNATFGC5C7AYMSFGHQ%26ch%3DAQEAEAABABSVTAJCdSnI09CRzpfSL3xpyh72a5E38T4.
+.netflix.com	TRUE	/	TRUE	1804579294	SecureNetflixId	v%3D3%26mac%3DAQEAEQABABQhgqm1uzuoAk4v4HD8AU7UOY4neBpYAks.%26dt%3D1773043294285
+.netflix.com	TRUE	/	FALSE	1790616446	flwssn	351845dc-bb80-4119-a974-25881e8fc810
+.netflix.com	TRUE	/	TRUE	1790616446	gsid	01efbd98-2c4b-430d-93a8-5d8bc1f09092
+.netflix.com	TRUE	/	FALSE	1804579294	nfvdid	BQFmAAEBEMW1kB2szceo4HVo3b-AlMZgUGloLIR_kG2DGMhK8mbJIbuWDxarjiKDCXPzIboxAyTZzOCKLypbIoiFmRK2-qCLbhdoFT99x4AwpNkR2MjXc1IO9TB1Z2vVV7zU-2W36es1SyRL4EFrirE67kZZN9Sg
+.netflix.com	TRUE	/	FALSE	1804579342	OptanonConsent	isGpcEnabled=0&datestamp=Mon+Mar+09+2026+13%3A32%3A22+GMT%2B0530+(India+Standard+Time)&version=202601.1.0&browserGpcFlag=0&isIABGlobal=false&hosts=&consentId=03d83b08-878a-4ad9-b5b6-d18f410290f7&interactionCount=1&isAnonUser=1&landingPath=https%3A%2F%2Fwww.netflix.com%2Faccount%2Ftravel%2Fverify&groups=C0001%3A1%2CC0002%3A1%2CC0003%3A1%2CC0004%3A1&crTime=1773043342877

@@ -1,0 +1,8 @@
+# =========================================
+# Hazırlayan by DARK KENZ
+# https://guns.lol/realdarkkenz
+# İletişim Discord: realdarkkenz 
+# =========================================
+
+.netflix.com	TRUE	/	TRUE	0	NetflixId	v=3&ct=BgjHlOvcAxLMAizXwzWda9SpQ2281_mVVRtIzmKGV2EAJZLcHVrQ_itFfsFRGOkuEWAOVG0Hjpf2iBCadIpjLHC6a0a1J3tz5is7VVPuaOAvlyL6fM3RuxDr9msi9KNBRWhvNgDcwf9ZveziGDDs-AWSxlP6aU9pzFwKq0Qwbis_KSfQZw7_KX_YVh86ZUX-kRMxXdFW3_lx2z3lSbW1Ac8G1g9lo10G2obokF6ZK9oM4xYYXCvfoBqkp1sgh1xxWohUfn1BjrV4fjQAmBdPJdZGE0TXKleRq-eIRceoyTgRc0ZIi4R2gm1FV2JtDngiJWQ6PFVmC5Y7O6SxEwS81ylLuLQnN2JXc_-Xv2rg_mikKMT6pieXat3wsM7ctj0oOMEoaEDEmXMD5simrCUAoM2pYHke_YF8ukdyC1-UXtTmEWqwX-5PhsGyONaEN-Km13n1ubg8GAYiDgoMHkZ5u-qugFg069Gi&ch=AQEAEAABABSfuddg4VYo7LUydqwdFCmONfSG05tEFxY.
+.netflix.com	TRUE	/	TRUE	0	SecureNetflixId	v=3&mac=AQEAEQABABSa8ixwdDc5Iiw0oMVKCUT8ABPi8GFbuzM.&dt=1773686396925

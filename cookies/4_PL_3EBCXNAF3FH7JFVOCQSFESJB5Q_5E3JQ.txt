@@ -1,0 +1,18 @@
+# =========================================
+# Hazırlayan by DARK KENZ
+# https://guns.lol/realdarkkenz
+# İletişim Discord: realdarkkenz 
+# =========================================
+
+NFToken DETAILS :👇
+NFToken: BgiQvuvcAxLCAQdq+DFYGmes+NX8gQbUjIpXb4wNLY/jqAhdIoeg+L3G4WP7mI87q4eh4kkgyd64euDjm0cjqIk3Mu5CkxhCTcai4tGyE52Mx2bEUneMNSZZaK6IZi43SCDgZY8seil97KLuFY9VfM0r+bYLpuklq0QAF9E11jdlg86z08sJBJeFXpjN+kd9XBdW+7zW6b011jN23UNq4GV+ZBge5P8WLTb4tW3rjpXDW8hMCxkpS0cutD/8HFq3es4vXwTkDruEQNaPGAYiDgoMAXePKDX/wmCinvWU
+🖥️ PC Login: https://netflix.com/?nftoken=BgiQvuvcAxLCAQdq+DFYGmes+NX8gQbUjIpXb4wNLY/jqAhdIoeg+L3G4WP7mI87q4eh4kkgyd64euDjm0cjqIk3Mu5CkxhCTcai4tGyE52Mx2bEUneMNSZZaK6IZi43SCDgZY8seil97KLuFY9VfM0r+bYLpuklq0QAF9E11jdlg86z08sJBJeFXpjN+kd9XBdW+7zW6b011jN23UNq4GV+ZBge5P8WLTb4tW3rjpXDW8hMCxkpS0cutD/8HFq3es4vXwTkDruEQNaPGAYiDgoMAXePKDX/wmCinvWU
+📱 Phone Login: https://netflix.com/unsupported?nftoken=BgiQvuvcAxLCAQdq+DFYGmes+NX8gQbUjIpXb4wNLY/jqAhdIoeg+L3G4WP7mI87q4eh4kkgyd64euDjm0cjqIk3Mu5CkxhCTcai4tGyE52Mx2bEUneMNSZZaK6IZi43SCDgZY8seil97KLuFY9VfM0r+bYLpuklq0QAF9E11jdlg86z08sJBJeFXpjN+kd9XBdW+7zW6b011jN23UNq4GV+ZBge5P8WLTb4tW3rjpXDW8hMCxkpS0cutD/8HFq3es4vXwTkDruEQNaPGAYiDgoMAXePKDX/wmCinvWU
+
+
+.netflix.com	TRUE	/	FALSE	1793516776	nfvdid	BQFmAAEBEJJWL9y9DRCzrto0J0xxYpJguRNkkZ1KGCcic-sNqy9VzbZ4WfSQpR5yWcrf5bOCVERHfS21Use1BC958jC00EzfGfQhfQ2R538_AxHZbvivwAwn3njxJHrNkK_ecAzdPZW2YADHLncjBn8Si4JSnGEM
+.netflix.com	TRUE	/	FALSE	1793516853	OptanonAlertBoxClosed	2025-11-01T07:07:33.458Z
+.netflix.com	TRUE	/	TRUE	1795713185	NetflixId	ct%3DBgjHlOvcAxK5A7KuVapqg59k4FMqnkcVtfCcQnoMts_lxqF0s9C6rWnYkbxzDT7f9b0IJCYO1h1PKWS1J58vuC9242GvOD2KjFuqLQLr92FVrolGfKJeIjnsSQxkWSbHj1YowtAnnB2D897Eyr3TQfu2g1eMMuJAp8-p07YFNMpauWFGZEZMHoq3AzJOgANrF-VXXj62ZhQIMAxxNkmeiqvq0NHGqVZsf763G74dY9GpeqcniDkd8X3-s9t-jGaGgJGx0iia4lw-L0EIfePFzEUHrR6-YjZ-g3YBPLa5dSJMEuw796Tb418s2fae0OJoaWaCiIdWVubrPP26DUhTCrvO_XV6QOW262puQCxZAcesIw9qTJmPCzjL27EwdZxGJm7YF-CswtoviGm6DMQfQaRXGgpB6D_LGx6Rue8U5u0dUMXlD6UaOZ07kTDLgQfIac0-6IrZd3rIbEp_t0CUQpYtrD0cDcW2HsMjEpdm6nOzxhmnEYpqw1ObJQ1GdprXEnFUGn0ABS9rHdw_w59mVB074sULVdDpjBCzlqwBDSoGyxFBxK9OJVzdEtXnmbdgO_ZN2VB2V0NiH9aIFXBaKBSNEhgGIg4KDL3hJ_FxutcGEwECTg..%26ch%3DAQEAEAABABTvWiricujhPp9pZACgqpgMDV17UDz6Zqk.%26v%3D3%26pg%3D3EBCXNAF3FH7JFVOCQSFESJB5Q
+.netflix.com	TRUE	/	TRUE	1795713185	SecureNetflixId	v%3D3%26mac%3DAQEAEQABABTqTYWXArklHTi-32dLBFEQ_hP7NMb7O3g.%26dt%3D1764177185568
+.netflix.com	TRUE	/	FALSE	1795716034	OptanonConsent	isGpcEnabled=0&datestamp=Wed+Nov+26+2025+19%3A00%3A34+GMT%2B0100+(czas+%C5%9Brodkowoeuropejski+standardowy)&version=202508.1.0&browserGpcFlag=0&isIABGlobal=false&hosts=&consentId=a7b99a62-0f3b-48be-ab6d-06461e851379&interactionCount=3&isAnonUser=1&landingPath=NotLandingPage&groups=C0001%3A1%2CC0002%3A1%2CC0003%3A0%2CC0004%3A0&intType=3&geolocation=PL%3B32&AwaitingReconsent=false
+.netflix.com	TRUE	/	FALSE	1798740033	dsca	customer

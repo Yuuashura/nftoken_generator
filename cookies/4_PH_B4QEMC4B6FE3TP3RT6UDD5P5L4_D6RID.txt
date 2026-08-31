@@ -1,0 +1,19 @@
+# =========================================
+# Hazırlayan by DARK KENZ
+# https://guns.lol/realdarkkenz
+# İletişim Discord: realdarkkenz 
+# =========================================
+
+NFToken DETAILS :👇
+NFToken: BgiQvuvcAxLCAerr3VYkDE3GPrzdNfw89Sc0iwitnMHWlFD6FohpEfOqkuh/L0SMFDfpRj6dr5AqRPX7GuSwbCCfngMUkI/daTr4PVLHsfZyd7mCdVYDfXb66wVUPTgYxwXMdwC6cRXReBfzaamhvaTQQjksqWh/PVkLz4kWVmvakEjI/Q4kDfp8xdf9Eclc63di8XhNNbNEYkzBGfHhC1Rkm9RJwqdzj1geTVD6PWkjuhfEVMyxllL8Ku+HDJTUUXH7We6Jl0YqXoC+GAYiDgoMqqp236/4/VUlXsMC
+🖥️ PC Login: https://netflix.com/?nftoken=BgiQvuvcAxLCAerr3VYkDE3GPrzdNfw89Sc0iwitnMHWlFD6FohpEfOqkuh/L0SMFDfpRj6dr5AqRPX7GuSwbCCfngMUkI/daTr4PVLHsfZyd7mCdVYDfXb66wVUPTgYxwXMdwC6cRXReBfzaamhvaTQQjksqWh/PVkLz4kWVmvakEjI/Q4kDfp8xdf9Eclc63di8XhNNbNEYkzBGfHhC1Rkm9RJwqdzj1geTVD6PWkjuhfEVMyxllL8Ku+HDJTUUXH7We6Jl0YqXoC+GAYiDgoMqqp236/4/VUlXsMC
+📱 Phone Login: https://netflix.com/unsupported?nftoken=BgiQvuvcAxLCAerr3VYkDE3GPrzdNfw89Sc0iwitnMHWlFD6FohpEfOqkuh/L0SMFDfpRj6dr5AqRPX7GuSwbCCfngMUkI/daTr4PVLHsfZyd7mCdVYDfXb66wVUPTgYxwXMdwC6cRXReBfzaamhvaTQQjksqWh/PVkLz4kWVmvakEjI/Q4kDfp8xdf9Eclc63di8XhNNbNEYkzBGfHhC1Rkm9RJwqdzj1geTVD6PWkjuhfEVMyxllL8Ku+HDJTUUXH7We6Jl0YqXoC+GAYiDgoMqqp236/4/VUlXsMC
+
+
+.netflix.com	TRUE	/	FALSE	1814583926	nfvdid	BQFmAAEBEMSqdzKh1PPXssI7gb5LxslgIHXX4MLh7fOii7XsHKnrpoBNx74-t46YN0IzOvAz1ttn640myvCN7gyydMQ1XNdxoAtgoiTdwJn14VTDESWyiOTlRVhaZ_71TF7yB3t-aiEcNywh2zpAvzD5kJD12v_b
+.netflix.com	TRUE	/	FALSE	1818762436	OptanonConsent	isGpcEnabled=0&datestamp=Thu+Aug+20+2026+19%3A47%3A16+GMT%2B0800+(Singapore+Standard+Time)&version=202604.2.0&browserGpcFlag=0&isDntEnabled=0&isIABGlobal=false&hosts=&consentId=44967461-49a0-4145-8dbc-f19cfec710f8&interactionCount=1&isAnonUser=1&prevHadToken=0&landingPath=NotLandingPage&groups=C0001%3A1%2CC0002%3A1%2CC0003%3A1%2CC0004%3A1&crTime=1783047808527&AwaitingReconsent=false
+.netflix.com	TRUE	/	TRUE	1818762434	NetflixId	v%3D3%26ct%3DBgjHlOvcAxKWA8Ae9_-dOufivvBwrdGChAdyfmPvGAYiYwfXXfo3e2RPU_xv34dIQSSAS3ad6EdAA1DdJ4C3LnKN1XT1TbjOSwnkKYee9nM5AAsRoSiyZq6IgFy4lC18MoPqtBl2YFsJQsCxopjbHeEJFXygZRD4MHxWijRuEyxlhGiCSOzpr_ZdoFF8SDKAfZLUXOQV6E1X1bzaRAdTQsV6AutVsrucczoGXLmiga8BQKwnrkCdz9tdcWBcXOmPmf4nUBZqk-7qY_qBJWzqWGSNhvPMXMD-XpuqASShgumcDq3uhOy8uI1UoIBGWMnR1aVIfSFrbEvIJ5L5gSGQQRjjZO0b8V6upYeE4FqgsvpjkbgBfCgLGYGXpSla2n5zEqkajrZj1gHYtqRBEFW2YtJm5yVx55b3zGWyoZ41OmJjE2O57lPWZQBoMmwJcFG3s9XAZ-xFZS4kx6Gi_ZHPStNlcdbcaxqObp0jtwyyBTR-V3FgXyhNmod6ZE_D_G5AC-gYU0eoSpK6GL3I767i0b2hFlzbUd3OFHNXRgps7o8YBiIOCgzvo2qwdY7UL-EZvAk.%26pg%3DB4QEMC4B6FE3TP3RT6UDD5P5L4%26ch%3DAQEAEAABABS19dIPv-D4ACu9TUiIV8cRlScs9U1Pogk.
+.netflix.com	TRUE	/	TRUE	1818762434	SecureNetflixId	v%3D3%26mac%3DAQEAEQABABSmTKcK-CKcXL2ChiNcMP8DZQmY-i5kuNc.%26dt%3D1787226434542
+.netflix.com	TRUE	/	FALSE	1795002436	netflix-sans-bold-3-loaded	true
+.netflix.com	TRUE	/	FALSE	1795002436	pas	%7B%22supplementals%22%3A%7B%22muted%22%3Afalse%7D%7D
+.netflix.com	TRUE	/	FALSE	1795002436	netflix-sans-normal-3-loaded	true

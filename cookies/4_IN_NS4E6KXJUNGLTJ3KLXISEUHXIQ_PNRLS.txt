@@ -1,0 +1,16 @@
+# =========================================
+# Hazırlayan by DARK KENZ
+# https://guns.lol/realdarkkenz
+# İletişim Discord: realdarkkenz 
+# =========================================
+
+NFToken DETAILS :👇
+NFToken: BgiQvuvcAxLCAYEvX1S7Nu/nuSUqG34rp6IC+ZC6Ho7xPdVRhlGA10aULGFAtqYNdEO8s5gM6wWFKBPcJSfWMvxXM6hyFEUIr5Zxt7I/ETWN2fNTYlW7LI+zpJMpByJsBJLTZK5LE8WHckTuOpi8SSSSvbZsM5tXxA9V0Ex9NcHr2OBxTTxqVBqNSOAAVNr4ooeA5/b82ig6wai2+4IR45/Ts7JkKClLkmEqnL1beUyD5xXQx1YhcIverKBsla2h5y2OYk9LVCF/zZbJGAYiDgoMQ9d2h+tHnw6/Q5b/
+🖥️ PC Login: https://netflix.com/?nftoken=BgiQvuvcAxLCAYEvX1S7Nu/nuSUqG34rp6IC+ZC6Ho7xPdVRhlGA10aULGFAtqYNdEO8s5gM6wWFKBPcJSfWMvxXM6hyFEUIr5Zxt7I/ETWN2fNTYlW7LI+zpJMpByJsBJLTZK5LE8WHckTuOpi8SSSSvbZsM5tXxA9V0Ex9NcHr2OBxTTxqVBqNSOAAVNr4ooeA5/b82ig6wai2+4IR45/Ts7JkKClLkmEqnL1beUyD5xXQx1YhcIverKBsla2h5y2OYk9LVCF/zZbJGAYiDgoMQ9d2h+tHnw6/Q5b/
+📱 Phone Login: https://netflix.com/unsupported?nftoken=BgiQvuvcAxLCAYEvX1S7Nu/nuSUqG34rp6IC+ZC6Ho7xPdVRhlGA10aULGFAtqYNdEO8s5gM6wWFKBPcJSfWMvxXM6hyFEUIr5Zxt7I/ETWN2fNTYlW7LI+zpJMpByJsBJLTZK5LE8WHckTuOpi8SSSSvbZsM5tXxA9V0Ex9NcHr2OBxTTxqVBqNSOAAVNr4ooeA5/b82ig6wai2+4IR45/Ts7JkKClLkmEqnL1beUyD5xXQx1YhcIverKBsla2h5y2OYk9LVCF/zZbJGAYiDgoMQ9d2h+tHnw6/Q5b/
+
+
+.netflix.com	TRUE	/	TRUE	0	NetflixId	v=3&ct=BgjHlOvcAxKFA2jUTtQDnOE9_BG7EtxA-NUrxAkmNjPS5PEvBZ0H7Nyt-OimRutccyda_w6oKaxOnx3ex-oR51oSWifyfGOSA-4VSQXV8IdGXOk05mO_Z91hOnka4ZjXWojFvd0M9P0SdBt_h-KhZTFKlEc1JHTaCrUuJWeKAxHN0umFfufPp9i1RUJVGzVx3YYMIaxRy8zb3kZOYiQV0ljKjt9CMc1-pnBOagcKzkJwbzZJOMuyf1DZGaliDJ4xiIB7LQVsE_bdFIdDFuZCMhAhCms2SxdQDyGFigo-aTmGRUWwTBl9pljroznAGlMDfjsXy2jUP_BkI84MFrkz4kt-fI03otuECxVaECU4Peq7rXVrlrMMo0ocMJPDM8zZGgffzjIcrLgRbxn48KYMnEZaz4_dfKUr2EQZnIZwkGfaZa3oHzaeFD1xJ_ehsOl1SAuXeDW4wD3nB6QBz7wRAQEYsAak92p4CtSbnzQJe58siJ9gTSh9cGf2lSnBl8k4oY7NarL-Cadojes_W51DGAYiDgoMf1M0HTVXwstKfLsO&pg=NS4E6KXJUNGLTJ3KLXISEUHXIQ&ch=AQEAEAABABSOTor-LY3pY3aEMCHaB0Dsrrc5KXaiL2o.
+.netflix.com	TRUE	/	TRUE	0	OptanonConsent	isGpcEnabled=0&datestamp=Thu+Jul+24+2025+21:19:31+GMT+0530+(India+Standard+Time)&version=202505.2.0&browserGpcFlag=0&isIABGlobal=false&hosts=&consentId=7fa890e9-0911-4f69-af30-eadfe73a561d&interactionCount=1&isAnonUser=1&landingPath=NotLandingPage&groups=C0001:1,C0002:1,C0003:1,C0004:1&AwaitingReconsent=false
+.netflix.com	TRUE	/	TRUE	0	SecureNetflixId	v=3&mac=AQEAEQABABQAb-XyOhnzfRMAwz1DKpbf5YNibazrsbw.&dt=1753372170647
+.netflix.com	TRUE	/	TRUE	0	nfvdid	BQFmAAEBEMx1UK85mkvNr2pZ1jNAgNJg7bDG50nX9jKxEWPCLxHp1BloDCSTSEvRIqG4amIJaKvlBZRnf54C8kUEC-uedI6olQsCyZ00Tri3qaBcljqhgguVe32AdVXyRHeLHIiTmPuoEnx2A9Agqvw5D5NdxVxC

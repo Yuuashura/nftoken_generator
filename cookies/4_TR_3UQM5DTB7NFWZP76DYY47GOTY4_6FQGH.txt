@@ -1,0 +1,19 @@
+# =========================================
+# Hazırlayan by DARK KENZ
+# https://guns.lol/realdarkkenz
+# İletişim Discord: realdarkkenz 
+# =========================================
+
+NFToken DETAILS :👇
+NFToken: BgiQvuvcAxLCAWPbO86WFhs5/wngmjnAVO/0Hs50Td1zSJWq6JOBx6KlbRP6N2APm375ALH4FPzJi9bLoCrfEK/nZ5MxE1qNOHEDR4GMj+mPOyT3sHd8Fu3umVRF/g+ZMaSIE8eHMFo0ElubjuEbgsNHO7cMrWAnfLaGQizVciK+Fh8ByhAEMAXlI8NwGRaQitEeW+B7Tzpu2is8fZaHdj2rG/omTaFGviq6f2e7pLDuy6x/Jw4Es53UnteeyEW3ODAtW2QWMCyv604xGAYiDgoMjRRa5dEpj1q9zXmR
+🖥️ PC Login: https://netflix.com/?nftoken=BgiQvuvcAxLCAWPbO86WFhs5/wngmjnAVO/0Hs50Td1zSJWq6JOBx6KlbRP6N2APm375ALH4FPzJi9bLoCrfEK/nZ5MxE1qNOHEDR4GMj+mPOyT3sHd8Fu3umVRF/g+ZMaSIE8eHMFo0ElubjuEbgsNHO7cMrWAnfLaGQizVciK+Fh8ByhAEMAXlI8NwGRaQitEeW+B7Tzpu2is8fZaHdj2rG/omTaFGviq6f2e7pLDuy6x/Jw4Es53UnteeyEW3ODAtW2QWMCyv604xGAYiDgoMjRRa5dEpj1q9zXmR
+📱 Phone Login: https://netflix.com/unsupported?nftoken=BgiQvuvcAxLCAWPbO86WFhs5/wngmjnAVO/0Hs50Td1zSJWq6JOBx6KlbRP6N2APm375ALH4FPzJi9bLoCrfEK/nZ5MxE1qNOHEDR4GMj+mPOyT3sHd8Fu3umVRF/g+ZMaSIE8eHMFo0ElubjuEbgsNHO7cMrWAnfLaGQizVciK+Fh8ByhAEMAXlI8NwGRaQitEeW+B7Tzpu2is8fZaHdj2rG/omTaFGviq6f2e7pLDuy6x/Jw4Es53UnteeyEW3ODAtW2QWMCyv604xGAYiDgoMjRRa5dEpj1q9zXmR
+
+
+.netflix.com	TRUE	/	FALSE	1794071207	nfvdid	BQFmAAEBEFWdfD7WIsvgzzozpZ0H5ihgtYhTSRbyHpNcm_Nj_v7quToOlgKql2-Y4q1eu5j_JwyodbrkEG-j3jzuRxI5J--y2Ym8P-VEz2cl9BkAuR97Oy_DvCQRD4AjEp5ZQZwTIxfmw8G0m4f8Budoq32BVHJn
+.netflix.com	TRUE	/	TRUE	1790616446	gsid	cd134d90-fdba-4124-b20a-9b2c357779fd
+.netflix.com	TRUE	/	TRUE	1798812694	NetflixId	ct%3DBgjHlOvcAxKKBNMH5Zu3y6ASjznP0e94peDpPJ6aGlfhjrZAM9gu9dz1-0wmV12RtSXHFnJ8OjuVoC9w-WGU_odI-buB4yn_coBKKetHhqmJY_8rzLhyUDErHZNKW0bKE46OS9hcFvPV4v_7vhVQHlLJ4muY1fIeyKjxF7ZCgTZqf_Dq9Cdap8dVGGg6D7_UPQRW0RS0AgPN5Eg2FBuoej9D6PpjdgDWTjUoYY_NY0kmElL6svy8-vx33k0YyJENDRQQyK6U-szHjWwANwof7uSuca6T66yEYlw5SE21okyj15kdhHGoP8o6qFRR6IuPeQJjr0h-5c18wijJ3tPICAJ1wINVpsdhvxW5hsk4QXTArtGv4U2zukJKh5yaHUyAMg6FwWEFCcGQpHNKsBC5dYOzQ1lEcJp2_FVzYemnPJIyNqYeIB4NS43i74U58634MQaaKvMkjZG1bY4FxSAK_yJ8j_DU9e_7mFFBdL7jcFyGpqOFwZW2nyeApo2HIoMXfxeEv7ypiqLpXjVUJaUzBo3WtTP2SRHGiG-0TWpfrgGsh1dgYaiBENgJms2XVjknKs1ixBMELK_HyDRUFEwOnzteEkNntc0-4orJrrQqkecLrqFFf0epIt8lNnHZE9tc7XgrRqrdPPPf1YSkvHK3QWxDufbD9S3IBA7GtS6-l0OInhm6eaPGczKGz1vKu32BCqoq-xgGIg4KDDAgROzz-cHawsI1-Q..%26ch%3DAQEAEAABABTzEIz7Fg5whp5WfkiOzUIMHg7Lyde14qU.%26v%3D3%26pg%3D3UQM5DTB7NFWZP76DYY47GOTY4
+.netflix.com	TRUE	/	TRUE	1798812694	SecureNetflixId	v%3D3%26mac%3DAQEAEQABABSJgivbqBSCIvu65eTD--vj_ubhWCiBD6M.%26dt%3D1783260693671
+.netflix.com	TRUE	/	FALSE	1791054031	netflix-sans-bold-3-loaded	true
+.netflix.com	TRUE	/	FALSE	1791054031	netflix-sans-normal-3-loaded	true
+.netflix.com	TRUE	/	FALSE	1791054031	pas	%7B%22supplementals%22%3A%7B%22muted%22%3Atrue%7D%7D

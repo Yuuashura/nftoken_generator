@@ -1,0 +1,19 @@
+# =========================================
+# Hazırlayan by DARK KENZ
+# https://guns.lol/realdarkkenz
+# İletişim Discord: realdarkkenz 
+# =========================================
+
+NFToken DETAILS :👇
+NFToken: BgiQvuvcAxLCAWyaKh4p1laA4rrC2DOuMfe+friERzawVdVgnghCxImUdrZd0fOZmkXn4KOc6PVG5ogqIYpw+35kdC3usEaf1HMFryqltYCtBLy4tyBoWJLeptj89wXpUlSBVXZet9tU9itlRUS+0/n6GK6aRk2+ecSMA7A+VMoIJ/DN0tAO+GtACAHE73ih5XjWhvdWEbw3IZNKgMLVKH/yiqzHDkN9YpLlZW9+qVo+80/ENcz7sn2N9cNErn/1cNCRS2rcBHg/Nie3GAYiDgoMq7va7QEC5Cubhj6c
+🖥️ PC Login: https://netflix.com/?nftoken=BgiQvuvcAxLCAWyaKh4p1laA4rrC2DOuMfe+friERzawVdVgnghCxImUdrZd0fOZmkXn4KOc6PVG5ogqIYpw+35kdC3usEaf1HMFryqltYCtBLy4tyBoWJLeptj89wXpUlSBVXZet9tU9itlRUS+0/n6GK6aRk2+ecSMA7A+VMoIJ/DN0tAO+GtACAHE73ih5XjWhvdWEbw3IZNKgMLVKH/yiqzHDkN9YpLlZW9+qVo+80/ENcz7sn2N9cNErn/1cNCRS2rcBHg/Nie3GAYiDgoMq7va7QEC5Cubhj6c
+📱 Phone Login: https://netflix.com/unsupported?nftoken=BgiQvuvcAxLCAWyaKh4p1laA4rrC2DOuMfe+friERzawVdVgnghCxImUdrZd0fOZmkXn4KOc6PVG5ogqIYpw+35kdC3usEaf1HMFryqltYCtBLy4tyBoWJLeptj89wXpUlSBVXZet9tU9itlRUS+0/n6GK6aRk2+ecSMA7A+VMoIJ/DN0tAO+GtACAHE73ih5XjWhvdWEbw3IZNKgMLVKH/yiqzHDkN9YpLlZW9+qVo+80/ENcz7sn2N9cNErn/1cNCRS2rcBHg/Nie3GAYiDgoMq7va7QEC5Cubhj6c
+
+
+.netflix.com	TRUE	/	FALSE	1812716230	OptanonAlertBoxClosed	2026-06-11T12:17:10.934Z
+.netflix.com	TRUE	/	TRUE	1812716339	NetflixId	v%3D3%26ct%3DBgjHlOvcAxKgA-ihAKBcSMWWdFKolyh6o_FZNFFY7JViVfwjrJ0bX2oGJttEQPnI0LBMegahMBa4Sq955PpQbJW50nTClkZMJ5YndQF4MfDLZ_YGwPxGSWXHb8rJ_MovQzfQxIj_NJ79Ye4M57ffZa_AtwThVQIVX35qkE1mXcAOIlDn0YMB8F5LmPT67m-kn9Op-KHXOI5DissgjgQhdlXG6WqfmE7kUCgV1u2j8r4kNCvEWXoIka8MRMwyKwRNAeoRyFbGyjUrd-xIuZaAprqVXGkDwETcK4In9aPFIudch9OxhocsUA21DGPTbxJLVPhbpoNS6F2gj_h-sy2I4vWFJFhqbQ1z5sQRRouXowKJiDWkv1GWcEdEdorDOS8IyEs6p_h1hFkIxwLhXQz8kjfJv4AK31rbYIaqPL0_fpEYqNB3lmaH9j2n8nkkDiQMhV1xs-0xjTtSxCx_rD78IO988lnF5LYr-fJ1P7Za7HipfMsMzNfA3bwtRsEEKGm8AudTNKL-KhSR-mB8nTVeIzwDxyc-zK9pKLjRuiB4O8h_4iDyRcIH9gseGAYiDgoMnjfRDUMo42hoi3SA%26pg%3DZ7SI5XONHVECFITA4XSC23ZG6E%26ch%3DAQEAEAABABTeO8dSrqfsxXZGhRxt_DOTGZVGcXQF8DY.
+.netflix.com	TRUE	/	FALSE	1812716340	OptanonConsent	isGpcEnabled=0&datestamp=Thu+Jun+11+2026+08%3A19%3A00+GMT-0400+(Hor%C3%A1rio+Padr%C3%A3o+do+Amazonas)&version=202604.2.0&browserGpcFlag=0&isDntEnabled=0&isIABGlobal=false&hosts=&consentId=ac696696-371f-4be3-aebe-bd6082b86d7e&interactionCount=1&isAnonUser=1&prevHadToken=0&landingPath=NotLandingPage&groups=C0001%3A1%2CC0002%3A1%2CC0003%3A1%2CC0004%3A1&fclco=&intType=3&crTime=1781180231476&geolocation=BR%3BRO&AwaitingReconsent=false
+.netflix.com	TRUE	/	FALSE	1788956340	netflix-sans-bold-3-loaded	true
+.netflix.com	TRUE	/	FALSE	1788956340	netflix-sans-normal-3-loaded	true
+.netflix.com	TRUE	/	FALSE	1812716339	nfvdid	BQFmAAEBEPQiookZ2TSVSh0QGAjTg41gAuUT95k1ONxf3Vtu36p3L2Q24av8jmaQB-YO-XvdaeLV9KWYMC-P2VgVZu3PpE169SqlocN7nNN_bTVJQdxjk8UNFKFLC66IqgjxPpiucZPdLqGTLBPplzwTwCfX7HgB
+.netflix.com	TRUE	/	TRUE	1812716339	SecureNetflixId	v%3D3%26mac%3DAQEAEQABABTUz8JAyNDQotqjYoayGVavbXEL8uO9s2M.%26dt%3D1781180341682

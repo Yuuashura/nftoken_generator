@@ -1,0 +1,22 @@
+# =========================================
+# Hazırlayan by DARK KENZ
+# https://guns.lol/realdarkkenz
+# İletişim Discord: realdarkkenz 
+# =========================================
+
+NFToken DETAILS :👇
+NFToken: BgiQvuvcAxLCAbqIuiVc/VZT7UCmRMpB+SFL0yYWgSa7qOo7A26s5vOLOWYyWTF5lpiYY4zhMnNsxY5kGNxgyP9QhkqbAQlU/yIO6fBbghcl4rG12ijYbUf4Kj32paqz9I8N62h6x3XNW4cpFNg5Qi4Q3tV4UxyW4erY/pMfZ1v42Nqx7OVrV8iH1/bZqc9/Y93RLkq0EKeC5GmDxRG8phGjHpf3qXwOT8fVmXOqKZ+NzF93Ej9ayAHGNOK60yy/l3Cc3FECadW6XcfHGAYiDgoMTBZa5XFf0uPcbbWn
+🖥️ PC Login: https://netflix.com/?nftoken=BgiQvuvcAxLCAbqIuiVc/VZT7UCmRMpB+SFL0yYWgSa7qOo7A26s5vOLOWYyWTF5lpiYY4zhMnNsxY5kGNxgyP9QhkqbAQlU/yIO6fBbghcl4rG12ijYbUf4Kj32paqz9I8N62h6x3XNW4cpFNg5Qi4Q3tV4UxyW4erY/pMfZ1v42Nqx7OVrV8iH1/bZqc9/Y93RLkq0EKeC5GmDxRG8phGjHpf3qXwOT8fVmXOqKZ+NzF93Ej9ayAHGNOK60yy/l3Cc3FECadW6XcfHGAYiDgoMTBZa5XFf0uPcbbWn
+📱 Phone Login: https://netflix.com/unsupported?nftoken=BgiQvuvcAxLCAbqIuiVc/VZT7UCmRMpB+SFL0yYWgSa7qOo7A26s5vOLOWYyWTF5lpiYY4zhMnNsxY5kGNxgyP9QhkqbAQlU/yIO6fBbghcl4rG12ijYbUf4Kj32paqz9I8N62h6x3XNW4cpFNg5Qi4Q3tV4UxyW4erY/pMfZ1v42Nqx7OVrV8iH1/bZqc9/Y93RLkq0EKeC5GmDxRG8phGjHpf3qXwOT8fVmXOqKZ+NzF93Ej9ayAHGNOK60yy/l3Cc3FECadW6XcfHGAYiDgoMTBZa5XFf0uPcbbWn
+
+
+.netflix.com	TRUE	/	FALSE	1790616446	flwssn	80d192d5-ed5f-4cdc-80d4-7e6e07f22995
+.netflix.com	TRUE	/	TRUE	1790616446	gsid	afc9e63a-5a82-47c0-95a4-adeda8f202f7
+.netflix.com	TRUE	/	TRUE	1819135881	NetflixId	v%3D3%26ct%3DBgjHlOvcAxKOA9Wq3Xev9fU0IAeeT3QYP1spd_CfEVa5CQzxp8g2OXI09OEQvB-UC5WzkLDpBw0XVgmY7tlN3yqEYlv54ZokAAuBAvcStKClLmAuZauJgJdzl72zXQQ19cWxv_Q33e5YSECaPN-L_Gp4lxABkbpnhzTb1zC3gXbhJnpIeg2icBpcbsNoWFWggoBp5iTTTToRrbkL27rK6efr8tXhQpGJBhXd8ifND40gam5Rjt3em5v7VmTcw805GZOujFKQML93LiJ6fdvIR06pOGbsSDvymPwHROP7dDsufbBw2fq6Yiy16JDR2d19GJ08F7n8uh6YLfS6Zpzul2w_alDME8HztQHMWyZAO6moj0oWaXn38yTQiDmOyfWUAYRjnwPSOyEP5FJB8QcmYDd2qla7uKClY8MmtWScddFlmg_q2r7uQ4gTlZl6ckylAzga_vEx1KEl_SYQXv3cPDs8jgHOF8-AJMRSJGcws_UOOyh6SXtW0DM5aIDcFktBAwQEs8YeqrKJTQKUhD_kmEmiGFuLCVLVGAYiDgoM80VI74rntVB98ogo%26pg%3DXPBOFXRRABHZTAVGRH6RAK4FLQ%26ch%3DAQEAEAABABRUTRaQjHCJWbuC_RPeM6d57QZ-Y3evFWs.
+.netflix.com	TRUE	/	FALSE	1819135883	OptanonConsent	isGpcEnabled=0&datestamp=Tue+Aug+25+2026+01%3A01%3A23+GMT%2B0530+(India+Standard+Time)&version=202607.1.0&browserGpcFlag=0&isIABGlobal=false&hosts=&consentId=07f6ab54-91de-424b-8e1c-377d20c3bf26&interactionCount=1&isAnonUser=1&landingPath=NotLandingPage&groups=C0001%3A1%2CC0002%3A1%2CC0003%3A1%2CC0004%3A1&AwaitingReconsent=false&prevHadToken=0&isDntEnabled=0
+.netflix.com	TRUE	/	TRUE	1819135881	SecureNetflixId	v%3D3%26mac%3DAQEAEQABABQp1rZFeJQymFhYhfMvncij7f2xH5KHxrc.%26dt%3D1787599880573
+.netflix.com	TRUE	/	FALSE	1795375883	netflix-sans-bold-3-loaded	true
+.netflix.com	TRUE	/	FALSE	1795375883	netflix-sans-normal-3-loaded	true
+.netflix.com	TRUE	/	FALSE	1819135881	nfvdid	BQFmAAEBEPeiuRKR2C2M_z7jIZNjeBZg_AgPfVoIRomCgsN0fTRwbU1QD9Bhw6q8e1L3aFAjPbF5Y3aWFqs067n4AIplyowxqNl99msl0ULUORPsfuoif6h5EMffr0TWGfa-VIDCQzVNC7x8EYLFkGPk4jn51aJq
+.netflix.com	TRUE	/	FALSE	1795375883	pas	%7B%22supplementals%22%3A%7B%22muted%22%3Afalse%7D%7D
+.netflix.com	TRUE	/	FALSE	1790616446	profilesNewSession	0
